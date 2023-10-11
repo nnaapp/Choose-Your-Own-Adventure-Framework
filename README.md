@@ -10,7 +10,9 @@ Python (for CSV to JSON parser)
 story_csv_to_json.py in the tools directory can convert a CSV (formatted a specific way) to a JSON containing story data.
 
 ## Usage
-`python3 story_csv_to_json.py <csv_dir> <num_nodes> <branches_per_node> <json_dir>`
+```bash
+python3 story_csv_to_json.py <csv_dir> <num_nodes> <branches_per_node> <json_dir>
+```
 
 # Using Svelte
 
