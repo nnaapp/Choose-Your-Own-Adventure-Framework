@@ -10,36 +10,46 @@ export class StoryNode
     private branchCount: number;
     // Text prompt of node
     private prompt: string;
+    // ID from JSON file
+    private ID: number;
 
     /**
     * @param {string} prompt Prompt, defaults to "".
     * @param {number} branchCount Number of branches, defaults to 2.
     */
-    constructor(prompt: string, branchCount: number) 
+    constructor(ID: number, prompt: string, branchCount: number) 
     {
+        this.ID = ID;
         this.prompt = prompt;
         this.branchCount = branchCount;
         this.branches = new Array(this.branchCount);
     }
 
     /**
-    * Prints node prompt to the console.
+    * @returns {string} Prompt associated with this node
     */
-    Print() 
-    {
-        console.log(this.prompt);
-    }
-
     GetPrompt(): string
     {
         return this.prompt;
     }
 
+    /**
+    * @param {number} index Index of branch to get the text of (0 would be option 1, and so on)
+    * @returns {string|null} The text of the requested branch
+    */
     GetChoiceText(index: number): string|null
     {
         if (index >= this.branchCount || index < 0) return null;
 
         return this.branches[index].text;
+    }
+
+    /**
+    * @returns {number} ID from JSON file for this node (unique identifier)
+    */
+    GetID(): number
+    {
+        return this.ID;
     }
 
     /**
@@ -90,6 +100,17 @@ export class StoryTree
     private branchCount: number;
 
     /**
+    * Fills out an empty StoryTree, as StoryTree is meant to be
+    * populated from a JSON file (example included in github)
+    */
+    constructor()
+    {
+        this.nodes = [];
+        this.jsonIDHash = [];
+        this.branchCount = 0;
+    }
+
+    /**
     * @returns {number} The number of branches each node possesses (edges per node)
     */
     GetBranchesPerNode(): number
@@ -124,7 +145,7 @@ export class StoryTree
         // and hash their IDs to indices in jsonIDHash
         for (let i = 0; i < data.tree.length; i++)
         {
-            NewStoryTree.nodes.push(new StoryNode(data.tree[i].prompt, data.branchCount));
+            NewStoryTree.nodes.push(new StoryNode(i, data.tree[i].prompt, data.branchCount));
             NewStoryTree.jsonIDHash[data.tree[i].id] = i;
         }
 

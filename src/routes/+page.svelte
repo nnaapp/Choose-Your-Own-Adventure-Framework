@@ -6,12 +6,9 @@
     let tree: StoryTree = StoryTree.PopulateFromJSON(data as StoryTreeJSON);
 
     let currentNode: StoryNode = tree.GetRootNode();
-    
-    function GetCurrentPrompt(): string
-    {
-        return currentNode.GetPrompt();
-    }
 
+    let prompt: string = currentNode.GetPrompt();
+    
     function GetCurrentChoice(index: number): string|null
     {
         if (index < 0 || index >= tree.GetBranchesPerNode()) return null;
@@ -19,20 +16,32 @@
         return currentNode.GetChoiceText(index);
     }
 
+    function UpdateCurrentPrompt(): string
+    {
+        prompt = currentNode.GetPrompt();
+    }
+
     function MoveToNext(index: number)
     {
         if (index < 0 || index >= tree.GetBranchesPerNode()) return;
 
-        // TODO: make this work, it was giving an error related to "not a function"?
-        // currentNode = currentNode.GetNext(index);
+        currentNode = currentNode.GetNext(index).node;
+    }
+
+    function UpdateView(choice: number)
+    {
+        MoveToNext(choice);
+        UpdateCurrentPrompt();
+        console.log("Node change to: ID " + currentNode.GetID());
     }
 </script>
 
-<p>Prompt: {GetCurrentPrompt()}</p>
+<div>
+    <p>Prompt: {prompt}</p>
 
-{#each currentNode.branches as branches, i}
-    <button
-        on:click={MoveToNext(i)}
-    >{GetCurrentChoice(i)}</button>
-{/each}
-
+    {#each currentNode.branches as branches, i}
+        <button
+            on:click={() => UpdateView(i)}
+        >{GetCurrentChoice(i)}</button>
+    {/each}
+</div>
