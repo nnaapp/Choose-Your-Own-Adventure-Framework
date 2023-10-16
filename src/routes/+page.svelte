@@ -58,7 +58,7 @@
 
 <style>
     .question-container {
-        background-color: #758096;
+        background-color: #d7d9db;
         position: absolute;
         height: 80%;
         width: 50%;
@@ -100,17 +100,17 @@
 
     .Cost {
         background-color: #4A86E8;
-        border: 2px solid #3b72cc;
+        border: 3px solid #3b72cc;
     }
 
     .Time {
         background-color: #93C47D;
-        border: 2px solid #79a863;
+        border: 3px solid #79a863;
     }
 
     .Consequences {
         background-color: #FFAB40;
-        border: 2px solid #d98c2b;
+        border: 3px solid #d98c2b;
     }
 
     .Cost:hover {
@@ -126,7 +126,7 @@
     }
 </style>
 
-<body style="background-color:#596070;">
+<body style="background-image: linear-gradient(#252e3d, #0D1117);">
     <div class="question-container">
         <p style="font-size:32px;">Prompt: {prompt}</p>
     </div>
