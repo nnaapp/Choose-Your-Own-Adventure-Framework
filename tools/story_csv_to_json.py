@@ -73,7 +73,7 @@ for line in csv:
             break
 
         # Write the current type, followed by a comma if this is NOT the last entry
-        json.write(currentType)
+        json.write("\"" + currentType + "\"")
         if i != valsIndex + numBranches - 1:
             json.write(", ")
         numWrites += 1

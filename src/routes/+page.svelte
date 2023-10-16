@@ -1,7 +1,7 @@
 <script lang="ts">
     import { StoryTree, StoryNode } from './tree.ts'
     import type { StoryTreeJSON } from './tree.ts'
-    import * as data from './convertedlong.json'
+    import * as data from './convertedstory2.json'
 
     let tree: StoryTree = StoryTree.PopulateFromJSON(data as StoryTreeJSON);
 
@@ -13,12 +13,24 @@
     let numBranches = tree.GetBranchesPerNode();
     let choices: string[] = new Array(numBranches);
     UpdateChoices();
-        
+
+    let buttonTypes: string = new Array(numBranches);
+    UpdateColors();
+       
     function UpdateChoices()
     {
         for (let i = 0; i < numBranches; i++)
         {
             choices[i] = currentNode.GetChoiceText(i);
+        }
+    }
+
+    function UpdateColors()
+    {
+        for (let i = 0; i < numBranches; i++)
+        {
+            buttonTypes[i] = currentNode.GetType(i);
+            console.log(buttonTypes[i]);
         }
     }
 
@@ -39,6 +51,7 @@
         MoveToNext(choice);
         UpdateCurrentPrompt();
         UpdateChoices();
+        UpdateColors();
         console.log("Node change to: ID " + currentNode.GetID());
     }
 </script>
@@ -70,8 +83,6 @@
     }
 
     .button {
-        background-color: #79ed79;
-        border: 2px solid #78e378;
         color: black;
         padding: 75px 200px;
         text-align: center;
@@ -83,10 +94,31 @@
         border-radius: 8px;
     }
 
-    .button:hover {
-        background-color: #dbffdb;
-        border: 2px solid #bce8bc;
-        color: black;
+    .Cost {
+        background-color: #4A86E8;
+        border: 2px solid #3b72cc;
+    }
+
+    .Time {
+        background-color: #93C47D;
+        border: 2px solid #79a863;
+    }
+
+    .Consequences {
+        background-color: #FFAB40;
+        border: 2px solid #d98c2b;
+    }
+
+    .Cost:hover {
+        background-color: #96beff;
+    }
+
+    .Time:hover {
+        background-color: #daffc9;
+    }
+
+    .Consequences:hover {
+        background-color: #ffd299
     }
 </style>
 
@@ -99,7 +131,7 @@
         {#each currentNode.branches as branches, i}
             <div class="flex-button">
             <button
-                class = "button" 
+                class = "button {buttonTypes[i]}" 
                 on:click={() => UpdateView(i)}
             >{choices[i]}</button>
             </div>

@@ -44,6 +44,13 @@ export class StoryNode
         return this.branches[index].text;
     }
 
+    GetType(index: number): string|null
+    {
+        if (index >= this.branchCount || index < 0) return null;
+
+        return this.branches[index].nodeType;
+    }
+
     /**
     * @returns {number} ID from JSON file for this node (unique identifier)
     */
@@ -155,12 +162,15 @@ export class StoryTree
         {
             // Get the IDs the current node should connect to
             let curBranches = data.tree[i].branches;
+            // Get the types of the current set of branches (cost, consequences, etc)
+            let curTypes = data.tree[i].types;
             for (let j = 0; j < curBranches.length; j++)
             {
                 // Convert the current branch ID into an index in this.nodes
                 curBranches[j] = NewStoryTree.jsonIDHash[curBranches[j]];
                 // Format a new Branch to be added to the current node's Branch array
-                let newBranch: Branch = { node: NewStoryTree.nodes[curBranches[j]], text: String(j + " Question") };
+                let newBranch: Branch = 
+                    { node: NewStoryTree.nodes[curBranches[j]], nodeType: curTypes[j], text: String(curTypes[j] + " Question") };
                 NewStoryTree.nodes[i].SetNext(j, newBranch);
             }
         }
@@ -180,6 +190,7 @@ export type StoryTreeJSON =
     {
         id: number;
         branches: number[];
+        types: string[];
         prompt: string;
     }[];
 }
@@ -192,5 +203,6 @@ interface IDtoIndex
 type Branch = 
 {
     node: StoryNode;
+    nodeType: string;
     text: string;  
 }

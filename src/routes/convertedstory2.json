@@ -8,10 +8,10 @@
 			"prompt": "Test 0"
 		},
 		{
-			"id": 1,
-			"branches": [3, 3], 
-			"types": ["Time", "Cost"], 
-			"prompt": "Test 1"
+			"id": 3,
+			"branches": [], 
+			"types": [], 
+			"prompt": "Test 3"
 		},
 		{
 			"id": 2,
@@ -20,10 +20,10 @@
 			"prompt": "Test 2"
 		},
 		{
-			"id": 3,
-			"branches": [], 
-			"types": [], 
-			"prompt": "Test 3"
+			"id": 1,
+			"branches": [3, 3], 
+			"types": ["Time", "Cost"], 
+			"prompt": "Test 1"
 		}
 		]
 }
