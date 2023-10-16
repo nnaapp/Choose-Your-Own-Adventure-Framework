@@ -22,6 +22,7 @@ csvIndex = 0 # Count of what node we are on
 for line in csv:
     # for the current line in the CSV, strip the newline and split it into an array, delimited by commas
     currentVals = line.strip("\n").split(",")
+    
     # Current index in the array, helps for variadic amounts of branches per node
     valsIndex = 0
 
@@ -36,12 +37,13 @@ for line in csv:
     json.write("\"id\": " + currentVals[valsIndex] + ",\n\t\t\t")
     valsIndex += 1
 
-    # Write each branch ID in brackets, incrementing index every time
+    # Write each branch ID in brackets
     json.write("\"branches\": [")
+    numWrites = 0
     # For valsIndex to (valsIndex + numBranches)
     for i in range(valsIndex, valsIndex + numBranches):
         # Exporting CSV from Excel adds quotes around a cell containing a comma, this strips that
-        currentBranchID = currentVals[i].strip("\"")
+        currentBranchID = currentVals[i].strip("\"").strip(" ")
 
         # If the first branch is "", this is a leaf node, so stop reading and move on
         if currentBranchID == "":
@@ -51,12 +53,36 @@ for line in csv:
         json.write(currentBranchID)
         if i != valsIndex + numBranches - 1:
             json.write(", ")
-
+        numWrites += 1
+            
     # Close the array of branches
     json.write("], \n\t\t\t")
-    # Set the index of the current line to the LAST element,
-    # as this handles variadic amounts of branches better, specifically for leaf nodes with no branches
-    valsIndex = len(currentVals) - 1
+
+    # Add to the index the number of writes made to the JSON file, or 1, whichever is greater
+    valsIndex += numWrites if numWrites > 0 else 1 
+
+    # Write each type associated with the branch IDs in brackets
+    json.write("\"types\": [")
+    numWrites = 0
+    for i in range(valsIndex, valsIndex + numBranches):
+        # Exporting CSV from Excel adds quotes around a cell containing a comma, this strips that
+        currentType = currentVals[i].strip("\"").strip(" ")
+       
+        # If the first branch is "", this is a leaf node, so stop reading and move on
+        if currentType == "":
+            break
+
+        # Write the current type, followed by a comma if this is NOT the last entry
+        json.write(currentType)
+        if i != valsIndex + numBranches - 1:
+            json.write(", ")
+        numWrites += 1
+
+    # Close the array of types
+    json.write("], \n\t\t\t")
+
+    # Add to the index the number of writes made to the JSON file, or 1, whichever is greater
+    valsIndex += numWrites if numWrites > 0 else 1 # Add either numWrites or 1, whichever is greater
 
     # Write prompt and end the current entry
     json.write("\"prompt\": \"" + currentVals[valsIndex] + "\"\n\t\t")
