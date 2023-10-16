@@ -58,15 +58,18 @@
 
 <style>
     .question-container {
-        background-color: #ced7de;
+        background-color: #758096;
         position: absolute;
-        top: 10%;
-        left: 40%;
         height: 80%;
         width: 50%;
+        top: 50%;
+        left: 85%;
+        transform:translate(-85%, -50%);
         padding: 10px;
         font-size: 32px;
         font-family: "FreeMono", "Lucida Console", monospace;
+        border-radius: 8px;
+        border: 4px solid #292c33
     }
 
     .flex-container {
@@ -78,13 +81,14 @@
     }
 
     .flex-button {
-        margin-bottom: 2%;
+        margin-bottom: 3%; /* evil hack to center the flex box buttons, magic number */
         margin-left: 5%;
     }
 
     .button {
         color: black;
-        padding: 75px 200px;
+        width: 100%; /* use whole width of flex box*/
+        height: 33vh;/* use 1/3 of screen per button */
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -122,7 +126,7 @@
     }
 </style>
 
-<body style="background-color:#ebebeb;">
+<body style="background-color:#596070;">
     <div class="question-container">
         <p style="font-size:32px;">Prompt: {prompt}</p>
     </div>
