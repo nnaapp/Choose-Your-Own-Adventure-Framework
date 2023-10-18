@@ -59,6 +59,11 @@ export class StoryNode
         return this.ID;
     }
 
+    GetNumBranches(): number
+    {
+        return this.branchCount;
+    }
+
     /**
     * @param {number} branchNum Number representing which path to set.
     * @param {StoryNode} branch Branch to set as the destination of choice branchNum.
@@ -135,12 +140,17 @@ export class StoryTree
         return this.nodes[this.jsonIDHash[0]];
     }
 
+    GetNodes(): StoryNode[]
+    {
+        return this.nodes;
+    }
+
     /**
     * Static method to populate a StoryTree object with data from a JSON file (with a specific format).
     * @param {StoryTreeJSON} data JSON file parsed into a StoryTreeJSON interface.
     * @returns {StoryTree} StoryTree object populated with data from the StoryTreeJSON arg.
     */
-    static PopulateFromJSON(data: StoryTreeJSON): StoryTree
+    static PopulateFromJSON(data: StoryTreeJSON, leafNodesRestart: boolean): StoryTree
     {
         var NewStoryTree = new StoryTree();
 
@@ -152,7 +162,7 @@ export class StoryTree
         // and hash their IDs to indices in jsonIDHash
         for (let i = 0; i < data.tree.length; i++)
         {
-            NewStoryTree.nodes.push(new StoryNode(i, data.tree[i].prompt, data.branchCount));
+            NewStoryTree.nodes.push(new StoryNode(i, data.tree[i].prompt, data.tree[i].branches.length));
             NewStoryTree.jsonIDHash[data.tree[i].id] = i;
         }
 
@@ -200,7 +210,7 @@ interface IDtoIndex
     [key: number]: number;
 }
 
-type Branch = 
+export type Branch = 
 {
     node: StoryNode;
     nodeType: string;
