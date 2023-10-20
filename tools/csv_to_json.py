@@ -36,6 +36,10 @@ data = {'BranchCount': int(sys.argv[3]), 'Tree': arr}
 
 # Dump the data dict to JSON using JSON lib
 with open(sys.argv[2], 'w', encoding = 'utf-8') as jsonfile:
+    # Convert ID entries to integers, instead of strings
+    for entry in data['Tree']:
+        entry['ID'] = int(entry['ID'])
+
     # Initially dump the JSON data to a variable, so that
     # undesired characters can be stripped before the file write
     out = json.dumps(data, indent = 4)

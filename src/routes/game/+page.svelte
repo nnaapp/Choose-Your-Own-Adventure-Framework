@@ -2,9 +2,15 @@
     import { goto } from '$app/navigation';
     import { gameTree } from '../../tree_store.ts';
 
+    interface ChoiceDict
+    {
+        [key: string]: number;
+    }
+
+    /// Story Tree Management ///
     let tree: StoryTree;
     gameTree.subscribe((value) => {
-        console.log("bruh");
+        console.log("Story tree read from store.")
         tree = value;
     });
    
@@ -19,6 +25,17 @@
 
     let buttonTypes: string = new Array(numBranches);
     UpdateColors();
+
+    // Times the player took each type of choice
+    let choicesTaken: ChoiceDict = [];
+    ResetChoiceCount();
+    
+    function ResetChoiceCount()
+    {
+        choicesTaken["Cost"] = 0;
+        choicesTaken["Time"] = 0;
+        choicesTaken["Consequences"] = 0;
+    }
        
     function UpdateChoices()
     {
@@ -50,28 +67,38 @@
 
     function UpdateGame(choice: number)
     {
-        console.log(tree.GetNodes());
+        if (choicesTaken[buttonTypes[choice]] == undefined)
+        {
+            choicesTaken[buttonTypes[choice]] = 1;        
+        }
+        else
+        {
+            choicesTaken[buttonTypes[choice]]++;
+        }
+    
         MoveToNext(choice);
         numBranches = currentNode.GetNumBranches();
         UpdateCurrentPrompt();
         UpdateChoices();
         UpdateColors();
-        console.log("Node change to: ID " + currentNode.GetID());
+        console.log("Node change to: ID " + currentNode.GetID() + ".");
     }
 
     function RestartGame()
     {
+        console.log(choicesTaken);
+        ResetChoiceCount();
         currentNode = tree.GetRootNode();
         numBranches = currentNode.GetNumBranches();
         UpdateCurrentPrompt();
         UpdateChoices();
         UpdateColors();
-        console.log("Game reset, node changed to: ID " + currentNode.GetID());
+        console.log("Game reset, node changed to: ID " + currentNode.GetID() + ".");
     }
-
+    ///////////////
+    
     function BackToMenu()
     {
-        RestartGame();
         goto('..', { replaceState: false });
     }
 </script>
@@ -125,6 +152,8 @@
         font-family: "FreeMono", "Lucida Console", monospace;
         transition-duration: 0.4s;
         border-radius: 8px;
+        white-space: normal;
+        word-wrap: break-word;
     }
 
     .Cost {

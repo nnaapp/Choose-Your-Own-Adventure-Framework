@@ -2,23 +2,26 @@
     "BranchCount": 3,
     "Tree": [
         {
-            "ID": 0,
+            "ID": "0",
             "Branches": [
                 "1",
-                "2"
+                "2",
+                "3"
             ],
             "Types": [
                 "Cost",
-                "Consequences"
+                "Consequences",
+                "Time"
             ],
             "Texts": [
                 "Option A (Cost)",
-                "Option B (Consequences)"
+                "Option B (Consequences)",
+                "C"
             ],
             "Prompt": "Test 0"
         },
         {
-            "ID": 3,
+            "ID": "3",
             "Branches": [
                 
             ],
@@ -31,34 +34,40 @@
             "Prompt": "Test 3"
         },
         {
-            "ID": 2,
+            "ID": "2",
             "Branches": [
+                "3",
                 "3",
                 "3"
             ],
             "Types": [
                 "Consequences",
-                "Time"
+                "Time",
+                "Cost"
             ],
             "Texts": [
                 "Option A (Cost)",
-                "Option B (Time)"
+                "Option B (Time)",
+                "C"
             ],
             "Prompt": "Test 2"
         },
         {
-            "ID": 1,
+            "ID": "1",
             "Branches": [
+                "3",
                 "3",
                 "3"
             ],
             "Types": [
                 "Time",
-                "Cost"
+                "Cost",
+                "Consequences"
             ],
             "Texts": [
                 "Option A (Time)",
-                "Option B (Cost)"
+                "Option B (Cost)",
+                "C"
             ],
             "Prompt": "Test 1"
         }
