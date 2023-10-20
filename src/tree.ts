@@ -154,33 +154,34 @@ export class StoryTree
     {
         var NewStoryTree = new StoryTree();
 
-        NewStoryTree.branchCount = data.branchCount;
+        NewStoryTree.branchCount = data.BranchCount;
         NewStoryTree.nodes = [];
         NewStoryTree.jsonIDHash = [];
 
         // Push every node from the JSON onto the nodes array,
         // and hash their IDs to indices in jsonIDHash
-        for (let i = 0; i < data.tree.length; i++)
+        for (let i = 0; i < data.Tree.length; i++)
         {
-            NewStoryTree.nodes.push(new StoryNode(i, data.tree[i].prompt, data.tree[i].branches.length));
-            NewStoryTree.jsonIDHash[data.tree[i].id] = i;
+            NewStoryTree.nodes.push(new StoryNode(i, data.Tree[i].Prompt, data.Tree[i].Branches.length));
+            NewStoryTree.jsonIDHash[data.Tree[i].ID] = i;
         }
 
         // Do a second pass, connecting nodes to each other
         // by adding Branches to their Branch arrays
-        for (let i = 0; i < data.tree.length; i++)
+        for (let i = 0; i < data.Tree.length; i++)
         {
             // Get the IDs the current node should connect to
-            let curBranches = data.tree[i].branches;
+            let curBranches = data.Tree[i].Branches;
             // Get the types of the current set of branches (cost, consequences, etc)
-            let curTypes = data.tree[i].types;
+            let curTypes = data.Tree[i].Types;
+            let curTexts = data.Tree[i].Texts;
             for (let j = 0; j < curBranches.length; j++)
             {
                 // Convert the current branch ID into an index in this.nodes
                 curBranches[j] = NewStoryTree.jsonIDHash[curBranches[j]];
                 // Format a new Branch to be added to the current node's Branch array
                 let newBranch: Branch = 
-                    { node: NewStoryTree.nodes[curBranches[j]], nodeType: curTypes[j], text: String(curTypes[j] + " Question") };
+                    { node: NewStoryTree.nodes[curBranches[j]], nodeType: curTypes[j], text: curTexts[j] };
                 NewStoryTree.nodes[i].SetNext(j, newBranch);
             }
         }
@@ -195,13 +196,14 @@ export class StoryTree
 
 export type StoryTreeJSON = 
 {
-    branchCount: number;
-    tree: 
+    BranchCount: number;
+    Tree: 
     {
-        id: number;
-        branches: number[];
-        types: string[];
-        prompt: string;
+        ID: number;
+        Branches: number[];
+        Types: string[];
+        Texts: string[];
+        Prompt: string;
     }[];
 }
 
