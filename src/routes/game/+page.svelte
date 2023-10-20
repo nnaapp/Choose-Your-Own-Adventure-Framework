@@ -1,12 +1,14 @@
 <script lang="ts">
-    import { StoryTree, StoryNode } from './tree.ts';
-    import type { StoryTreeJSON } from './tree.ts';
-    import * as data from './convertedstory2.json';
     import { goto } from '$app/navigation';
+    import { gameTree } from '../../tree_store.ts';
 
-    let tree: StoryTree = StoryTree.PopulateFromJSON(data as StoryTreeJSON);
-
-    let currentNode: StoryNode = tree.GetRootNode();
+    let tree: StoryTree;
+    gameTree.subscribe((value) => {
+        console.log("bruh");
+        tree = value;
+    });
+   
+    let currentNode = tree.GetRootNode();
 
     let prompt: string
     UpdateCurrentPrompt();

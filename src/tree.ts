@@ -150,7 +150,7 @@ export class StoryTree
     * @param {StoryTreeJSON} data JSON file parsed into a StoryTreeJSON interface.
     * @returns {StoryTree} StoryTree object populated with data from the StoryTreeJSON arg.
     */
-    static PopulateFromJSON(data: StoryTreeJSON, leafNodesRestart: boolean): StoryTree
+    static PopulateFromJSON(data: StoryTreeJSON): StoryTree
     {
         var NewStoryTree = new StoryTree();
 
