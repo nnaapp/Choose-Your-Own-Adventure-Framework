@@ -104,7 +104,7 @@
 </script>
 
 <style>
-    .prompt-container {
+    prompt-container {
         background-color: #d7d9db;
         position: absolute;
         height: 80%;
@@ -113,27 +113,28 @@
         left: 85%;
         transform:translate(-85%, -50%);
         padding: 10px;
-        font-size: 32px;
+        font-size: 4vmin;
         font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
         border: 4px solid #292c33
     }
 
+    flex-container {
+        height: 100vh;
+        width: 33vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
     .menu-button {
         position: absolute;
+        font-size: 1.5vmin;
         height: 5%;
         width: 8%;
         top: 2%;
         left: 99%;
         transform:translate(-99%, -2%);
-    }
-
-    .flex-container {
-        height: 100vh;
-        width: 33vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around
     }
 
     .flex-button {
@@ -185,11 +186,22 @@
     }
 
     .Consequences:hover {
-        background-color: #ffd299
+        background-color: #ffd299;
     }
 
     .Interaction:hover {
-        background-color: #ffffff
+        background-color: #ffffff;
+    }
+
+    .static {
+        color: black;
+        width: 100%; /* use whole width of flex box*/
+        height: 33vh;/* use 1/3 of screen per button */
+        text-decoration: none;
+        font-size: 2vmin;
+        font-family: "FreeMono", "Lucida Console", monospace;
+        border-radius: 8px;
+        background-color: #d7d9db 
     }
 </style>
 
@@ -199,11 +211,11 @@
         on:click={() => BackToMenu()}
     >Return to Menu</button>
     
-    <div class="prompt-container">
+    <prompt-container>
         <p style="font-size:32px;">Prompt: {prompt}</p>
-    </div>
+    </prompt-container>
 
-    <div class="flex-container">
+    <flex-container>
         {#if numBranches > 0}
             {#each currentNode.branches as branch, i}
                 <div class="flex-button">
@@ -220,6 +232,18 @@
                 on:click={() => RestartGame()}
             >Restart the game!</button>
             </div>
+            <div class="flex-button">
+            <div class="static">
+            <div style="position: relative; top: 50%; transform:translateY(-50%);">
+            <div style="position: relative; left: 10%; transform:translateX(-10%); display: inline-block; text-align: left;">
+                <p style="margin-bottom: 8vh; text-decoration: underline;">Types of Choices Picked</p>
+                <p style="white-space: pre; margin-bottom: 4vh">Cost&#9;&#9;{choicesTaken["Cost"]}</p>
+                <p style="white-space: pre; margin-bottom: 4vh">Time&#9;&#9;{choicesTaken["Time"]}</p>
+                <p style="white-space: pre;">Consequences&#9;{choicesTaken["Consequences"]}</p>
+            </div>
+            </div>
+            </div>
+            </div>        
         {/if}
-    </div>
+    </flex-container>
 </body>
