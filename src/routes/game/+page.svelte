@@ -13,6 +13,14 @@
         console.log("Story tree read from store.")
         tree = value;
     });
+
+    let types = tree.GetTypes();
+    // TEMPORARY, just to test for now
+    let colors: string[] = new Array(3);
+    colors[0] = tree.GetColor(types[0]);
+    colors[1] = tree.GetColor(types[1]);
+    colors[2] = tree.GetColor(types[2]);
+    // End temp stuff
    
     let currentNode = tree.GetRootNode();
 
@@ -242,11 +250,12 @@
             <div class="flex-button">
                 <div class="static">
                     <sub-flex-container>
-                        <div class="static" style="background-color: #FF0000; border-radius: 0px;">
+                        <!-- TEMPORARY hard coded color array indices, will be swapped to #each loop later, to be dynamic-->
+                        <div class="static" style="background-color: {colors[0]}; border-radius: 0px;">
                         </div>
-                        <div class="static" style="background-color: #00FF00; border-radius: 0px;">
+                        <div class="static" style="background-color: {colors[1]}; border-radius: 0px;">
                         </div>
-                        <div class="static" style="background-color: #0000FF; border-radius: 0px;">
+                        <div class="static" style="background-color: {colors[2]}; border-radius: 0px;">
                         </div>
                     </sub-flex-container>
                 </div> 

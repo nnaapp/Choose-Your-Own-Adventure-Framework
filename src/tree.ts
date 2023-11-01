@@ -108,6 +108,8 @@ export class StoryTree
     private nodes: StoryNode[];
     // Hashmap of IDs (from JSON file) to indices in nodes array
     private jsonIDHash: IDtoIndex;
+    // Array of choice type names
+    private types: string[];
     // Hashmap of type names to color codes (Cost: #FFFFFF, for example)
     private typeColorHash: TypeToColor;
     // Branches per node
@@ -121,6 +123,7 @@ export class StoryTree
     {
         this.nodes = [];
         this.jsonIDHash = {};
+        this.types = [];
         this.typeColorHash = {};
         this.branchCount = 0;
     }
@@ -148,6 +151,16 @@ export class StoryTree
         return this.nodes;
     }
 
+    GetColor(typeName: string): string|undefined
+    {
+        return this.typeColorHash[typeName];
+    }
+
+    GetTypes(): string[]
+    {
+        return this.types;
+    }
+
     /**
     * Static method to populate a StoryTree object with data from a JSON file (with a specific format).
     * @param {StoryTreeJSON} data JSON file parsed into a StoryTreeJSON interface.
@@ -164,6 +177,7 @@ export class StoryTree
         // Fill out the hashmap from type names to color codes
         for (let i = 0; i < data.Types.length; i++)
         {
+            NewStoryTree.types[i] = data.Types[i];
             NewStoryTree.typeColorHash[data.Types[i]] = data.Colors[i];
         }
 
