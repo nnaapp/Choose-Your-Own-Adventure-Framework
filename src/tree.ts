@@ -108,6 +108,8 @@ export class StoryTree
     private nodes: StoryNode[];
     // Hashmap of IDs (from JSON file) to indices in nodes array
     private jsonIDHash: IDtoIndex;
+    // Hashmap of type names to color codes (Cost: #FFFFFF, for example)
+    private typeColorHash: TypeToColor;
     // Branches per node
     private branchCount: number;
 
@@ -118,7 +120,8 @@ export class StoryTree
     constructor()
     {
         this.nodes = [];
-        this.jsonIDHash = [];
+        this.jsonIDHash = {};
+        this.typeColorHash = {};
         this.branchCount = 0;
     }
 
@@ -150,13 +153,19 @@ export class StoryTree
     * @param {StoryTreeJSON} data JSON file parsed into a StoryTreeJSON interface.
     * @returns {StoryTree} StoryTree object populated with data from the StoryTreeJSON arg.
     */
-    static PopulateFromJSON(data: StoryTreeJSON): StoryTree
+    static PopulateFromJSON(data: StoryTreeJSON): StoryTree|null
     {
         var NewStoryTree = new StoryTree();
 
         NewStoryTree.branchCount = data.BranchCount;
-        NewStoryTree.nodes = [];
-        NewStoryTree.jsonIDHash = [];
+
+        // If there is a mismatch between the number of choice types, and the number of colors, return null
+        if (data.Types.length != data.Colors.length) return null;
+        // Fill out the hashmap from type names to color codes
+        for (let i = 0; i < data.Types.length; i++)
+        {
+            NewStoryTree.typeColorHash[data.Types[i]] = data.Colors[i];
+        }
 
         // Push every node from the JSON onto the nodes array,
         // and hash their IDs to indices in jsonIDHash
@@ -196,6 +205,8 @@ export class StoryTree
 
 export type StoryTreeJSON = 
 {
+    Types: string[];
+    Colors: string[];
     BranchCount: number;
     Tree: 
     {
@@ -210,6 +221,11 @@ export type StoryTreeJSON =
 interface IDtoIndex
 {
     [key: number]: number;
+}
+
+interface TypeToColor
+{
+    [key: string]: string;
 }
 
 export type Branch = 
