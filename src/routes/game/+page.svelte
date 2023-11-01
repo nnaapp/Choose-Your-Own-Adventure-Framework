@@ -127,6 +127,13 @@
         justify-content: space-around;
     }
 
+    sub-flex-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
     .menu-button {
         position: absolute;
         font-size: 1.5vmin;
@@ -233,17 +240,17 @@
             >Restart the game!</button>
             </div>
             <div class="flex-button">
-            <div class="static">
-            <div style="position: relative; top: 50%; transform:translateY(-50%);">
-            <div style="position: relative; left: 10%; transform:translateX(-10%); display: inline-block; text-align: left;">
-                <p style="margin-bottom: 8vh; text-decoration: underline;">Types of Choices Picked</p>
-                <p style="white-space: pre; margin-bottom: 4vh">Cost&#9;&#9;{choicesTaken["Cost"]}</p>
-                <p style="white-space: pre; margin-bottom: 4vh">Time&#9;&#9;{choicesTaken["Time"]}</p>
-                <p style="white-space: pre;">Consequences&#9;{choicesTaken["Consequences"]}</p>
+                <div class="static">
+                    <sub-flex-container>
+                        <div class="static" style="background-color: #FF0000; border-radius: 0px;">
+                        </div>
+                        <div class="static" style="background-color: #00FF00; border-radius: 0px;">
+                        </div>
+                        <div class="static" style="background-color: #0000FF; border-radius: 0px;">
+                        </div>
+                    </sub-flex-container>
+                </div> 
             </div>
-            </div>
-            </div>
-            </div>        
         {/if}
     </flex-container>
 </body>
