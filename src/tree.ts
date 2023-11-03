@@ -109,11 +109,13 @@ export class StoryTree
     // Hashmap of IDs (from JSON file) to indices in nodes array
     private jsonIDHash: IDtoIndex;
     // Array of choice type names
-    private types: string[];
+    public types: string[];
     // Hashmap of type names to color codes (Cost: #FFFFFF, for example)
-    private typeColorHash: TypeToColor;
+    public typeToColor: TypeToColor;
+    public typeToHoverColor: TypeToColor;
+    public typeToBorderColor: TypeToColor;
     // Branches per node
-    private branchCount: number;
+    public branchCount: number;
 
     /**
     * Fills out an empty StoryTree, as StoryTree is meant to be
@@ -124,16 +126,10 @@ export class StoryTree
         this.nodes = [];
         this.jsonIDHash = {};
         this.types = [];
-        this.typeColorHash = {};
+        this.typeToColor = {};
+        this.typeToHoverColor = {};
+        this.typeToBorderColor = {}
         this.branchCount = 0;
-    }
-
-    /**
-    * @returns {number} The number of branches each node possesses (edges per node)
-    */
-    GetBranchesPerNode(): number
-    {
-        return this.branchCount;
     }
 
     /**
@@ -149,16 +145,6 @@ export class StoryTree
     GetNodes(): StoryNode[]
     {
         return this.nodes;
-    }
-
-    GetColor(typeName: string): string|undefined
-    {
-        return this.typeColorHash[typeName];
-    }
-
-    GetTypes(): string[]
-    {
-        return this.types;
     }
 
     /**
@@ -178,7 +164,9 @@ export class StoryTree
         for (let i = 0; i < data.Types.length; i++)
         {
             NewStoryTree.types[i] = data.Types[i];
-            NewStoryTree.typeColorHash[data.Types[i]] = data.Colors[i];
+            NewStoryTree.typeToColor[data.Types[i]] = data.Colors[i];
+            NewStoryTree.typeToHoverColor[data.Types[i]] = data.HoverColors[i];
+            NewStoryTree.typeToBorderColor[data.Types[i]] = data.BorderColors[i];
         }
 
         // Push every node from the JSON onto the nodes array,
@@ -221,6 +209,8 @@ export type StoryTreeJSON =
 {
     Types: string[];
     Colors: string[];
+    HoverColors: string[];
+    BorderColors: string[];
     BranchCount: number;
     Tree: 
     {

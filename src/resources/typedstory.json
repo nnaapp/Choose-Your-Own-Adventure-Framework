@@ -9,7 +9,17 @@
         "#daffc9",
         "#ffd299"
     ],
-    "BranchCount": 3,
+    "HoverColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#93C47D"
+    ],
+    "BorderColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#d98c2b"
+    ],
+    "BranchCount": 2,
     "Tree": [
         {
             "ID": 0,

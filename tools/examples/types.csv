@@ -1,4 +1,4 @@
-Type,Color
-Cost,#96beff
-Time,#daffc9
-Consequences,#ffd299
+Type,Color,HoverColor,BorderColor
+Cost,#96beff,#4A86E8,#4A86E8
+Time,#daffc9,#93C47D,#93C47D
+Consequences,#ffd299,#93C47D,#d98c2b

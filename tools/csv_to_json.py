@@ -8,6 +8,8 @@ if len(sys.argv) != 5:
 
 types = [] # type list
 colors = [] # color list
+hovercolors = [] # color for mouse hover list
+bordercolors = [] # accent color list
 data = {} # tree data dictionary
 
 # Open type/color CSV file with a CSV reader
@@ -17,6 +19,8 @@ with open(sys.argv[2], encoding = 'utf-8') as csvfile:
     for rows in csvReader:
         types.append(rows['Type'])
         colors.append(rows['Color'])
+        hovercolors.append(rows['HoverColor'])
+        bordercolors.append(rows['BorderColor'])
 
 # Open tree CSV file with a CSV reader 
 with open(sys.argv[1], encoding = 'utf-8') as csvfile:
@@ -42,7 +46,7 @@ for pair in data:
 
 # Re-format this into a dict, because python JSON lib likes dicts,
 # with only two key/value pairs: number of branches per node, and the tree of nodes
-data = {'Types': types, 'Colors': colors, 'BranchCount': int(sys.argv[4]), 'Tree': treeArr}
+data = {'Types': types, 'Colors': colors, 'HoverColors': hovercolors, 'BorderColors': bordercolors, 'BranchCount': int(sys.argv[4]), 'Tree': treeArr}
 
 # Dump the data dict to JSON using JSON lib
 with open(sys.argv[3], 'w', encoding = 'utf-8') as jsonfile:

@@ -14,13 +14,7 @@
         tree = value;
     });
 
-    let types = tree.GetTypes();
-    // TEMPORARY, just to test for now
-    let colors: string[] = new Array(3);
-    colors[0] = tree.GetColor(types[0]);
-    colors[1] = tree.GetColor(types[1]);
-    colors[2] = tree.GetColor(types[2]);
-    // End temp stuff
+    // let types = tree.types;
    
     let currentNode = tree.GetRootNode();
 
@@ -164,7 +158,7 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 2vmin;
         font-family: "FreeMono", "Lucida Console", monospace;
         transition-duration: 0.4s;
         border-radius: 8px;
@@ -172,40 +166,8 @@
         word-wrap: break-word;
     }
 
-    .Cost {
-        background-color: #4A86E8;
-        border: 3px solid #3b72cc;
-    }
-
-    .Time {
-        background-color: #93C47D;
-        border: 3px solid #79a863;
-    }
-
-    .Consequences {
-        background-color: #FFAB40;
-        border: 3px solid #d98c2b;
-    }
-
-    .Interaction {
-        background-color: #d7d9db;
-        border: 3px solid #292c33;
-    }
-
-    .Cost:hover {
-        background-color: #96beff;
-    }
-
-    .Time:hover {
-        background-color: #daffc9;
-    }
-
-    .Consequences:hover {
-        background-color: #ffd299;
-    }
-
-    .Interaction:hover {
-        background-color: #ffffff;
+    .button:hover {
+        font-size: 2.5vmin;
     }
 
     .static {
@@ -218,6 +180,13 @@
         border-radius: 8px;
         background-color: #d7d9db 
     }
+
+    .GameStats {
+        color: black;
+        text-align: center;
+        font-size: 2vmin;
+        font-family: "FreeMono", "Lucidia Console", monospace;
+    }
 </style>
 
 <body>
@@ -227,7 +196,7 @@
     >Return to Menu</button>
     
     <prompt-container>
-        <p style="font-size:32px;">Prompt: {prompt}</p>
+        <p>Prompt: {prompt}</p>
     </prompt-container>
 
     <flex-container>
@@ -235,7 +204,8 @@
             {#each currentNode.branches as branch, i}
                 <div class="flex-button">
                 <button
-                    class="button {buttonTypes[i]}" 
+                    class="button"
+                    style="background-color: {tree.typeToColor[buttonTypes[i]]}; border: 3px solid {tree.typeToBorderColor[buttonTypes[i]]};"
                     on:click={() => UpdateGame(i)}
                 >{choices[i]}</button>
                 </div>
@@ -250,13 +220,12 @@
             <div class="flex-button">
                 <div class="static">
                     <sub-flex-container>
-                        <!-- TEMPORARY hard coded color array indices, will be swapped to #each loop later, to be dynamic-->
-                        <div class="static" style="background-color: {colors[0]}; border-radius: 0px;">
-                        </div>
-                        <div class="static" style="background-color: {colors[1]}; border-radius: 0px;">
-                        </div>
-                        <div class="static" style="background-color: {colors[2]}; border-radius: 0px;">
-                        </div>
+                        {#each tree.types as type, i}
+                            <div class="static" style="border: 3px solid {tree.typeToBorderColor[type]}; flex-direction: column; background-color: {tree.typeToColor[type]}; border-radius: 0px">
+                                <p class="GameStats">{tree.types[i]}</p>
+                                <p class="GameStats" style="padding-top: 50%; font-size: 4vmin">{choicesTaken[type]}</p>
+                            </div>
+                        {/each}
                     </sub-flex-container>
                 </div> 
             </div>
