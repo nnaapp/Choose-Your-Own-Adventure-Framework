@@ -119,6 +119,7 @@
         font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
         border: 16px solid #d9dadb;
+        overflow-wrap: break-word;
     }
 
     flex-container {
@@ -159,6 +160,7 @@
         border-radius: 8px;
         white-space: normal;
         word-wrap: break-word;
+        overflow-wrap: break-word;
         margin-left: 5%;
         margin-top: 1%;
         margin-bottom: 1%;
@@ -180,6 +182,7 @@
         margin-left: 5%;
         margin-top: 1%;
         margin-bottom: 1%;
+        overflow-wrap: break-word;
     }
 
     .game-stats-box {
@@ -192,6 +195,7 @@
         border-radius: 8px;
         flex-direction: column;
         border-radius: 0px;
+        overflow-wrap: break-word;
     }
 
     .game-stats {
