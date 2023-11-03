@@ -42,6 +42,7 @@
         {
             choicesTaken[tree.types[i]] = 0;
         }
+        choicesTaken["TotalChoices"] = 0;
     }
        
     function UpdateChoices()
@@ -74,14 +75,8 @@
 
     function UpdateGame(choice: number)
     {
-        if (choicesTaken[buttonTypes[choice]] == undefined)
-        {
-            choicesTaken[buttonTypes[choice]] = 1;        
-        }
-        else
-        {
-            choicesTaken[buttonTypes[choice]]++;
-        }
+        choicesTaken[buttonTypes[choice]]++;
+        choicesTaken["TotalChoices"]++;
     
         MoveToNext(choice);
         numBranches = currentNode.GetNumBranches();
@@ -240,7 +235,8 @@
                         class="game-stats-box" 
                         style="border: 3px solid {tree.typeToBorderColor[type]}; background-color: {tree.typeToColor[type]};">
                             <p class="game-stats">{tree.types[i]}</p>
-                            <p class="game-stats" style="padding-top: 50%; font-size: 4vmin">{choicesTaken[type]}</p>
+                            <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type]}</p>
+                            <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
                         </div>
                     {/each}
                 </sub-flex-container>
