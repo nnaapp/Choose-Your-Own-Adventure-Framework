@@ -1,0 +1,8 @@
+ID,Branches,Types,Texts,Prompt
+0,"1,2,3,4,5","purbl, can, yelo, purbl, purbl","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 0
+3,"6,6,6,6,6","can, yelo, can, purbl, yelo","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 3
+2,"6,6,6,6,6","yelo, purbl, can, can, purbl","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 2
+1,"6,6,6,6,6","can, yelo, purbl, can, can","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 1
+4,"6,6,6,6,6","yelo, purbl, can, can, purbl","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 4
+5,"6,6,6,6,6","can, yelo, can, purbl, yelo","Option 1, Option 2, Option 3, Option 4, Option 5, Option 6",Test 5
+6,,,,Test 6

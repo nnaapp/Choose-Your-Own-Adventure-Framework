@@ -165,6 +165,8 @@
         white-space: normal;
         word-wrap: break-word;
         margin-left: 5%;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
 
     .button:hover {
@@ -181,6 +183,8 @@
         border-radius: 8px;
         background-color: #d7d9db;
         margin-left: 5%;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
 
     .game-stats-box {
