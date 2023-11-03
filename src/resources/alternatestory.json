@@ -1,0 +1,86 @@
+{
+    "Types": [
+        "yelo",
+        "purbl",
+        "can"
+    ],
+    "Colors": [
+        "#ffe08a",
+        "#e5a8ff",
+        "#c7fceb"
+    ],
+    "HoverColors": [
+        "#ffe08a",
+        "#e5a8ff",
+        "#c7fceb"
+    ],
+    "BorderColors": [
+        "#ffd45e",
+        "#d679fc",
+        "#a2fcdf"
+    ],
+    "BranchCount": 2,
+    "Tree": [
+        {
+            "ID": 0,
+            "Branches": [
+                1,
+                2
+            ],
+            "Types": [
+                "purbl",
+                "can"
+            ],
+            "Texts": [
+                "Option A (Cost)",
+                "Option B (Consequences)"
+            ],
+            "Prompt": "Test 0"
+        },
+        {
+            "ID": 3,
+            "Branches": [
+                
+            ],
+            "Types": [
+                
+            ],
+            "Texts": [
+                
+            ],
+            "Prompt": "Test 3"
+        },
+        {
+            "ID": 2,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "yelo",
+                "purbl"
+            ],
+            "Texts": [
+                "Option A (Cost)",
+                "Option B (Time)"
+            ],
+            "Prompt": "Test 2"
+        },
+        {
+            "ID": 1,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "can",
+                "yelo"
+            ],
+            "Texts": [
+                "Option A (Time)",
+                "Option B (Cost)"
+            ],
+            "Prompt": "Test 1"
+        }
+    ]
+}

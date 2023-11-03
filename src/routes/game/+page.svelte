@@ -18,13 +18,17 @@
    
     let currentNode = tree.GetRootNode();
 
+    // Prompt for choices
     let prompt: string
     UpdateCurrentPrompt();
-    
+
+    // Number of branches (typically the same for all, except leaf nodes which are 0)
     let numBranches = currentNode.GetNumBranches();
+    // Choice text, to respond to prompt
     let choices: string[] = new Array(numBranches);
     UpdateChoices();
 
+    // Type strings for buttons
     let buttonTypes: string = new Array(numBranches);
     UpdateColors();
 
@@ -34,9 +38,10 @@
     
     function ResetChoiceCount()
     {
-        choicesTaken["Cost"] = 0;
-        choicesTaken["Time"] = 0;
-        choicesTaken["Consequences"] = 0;
+        for (let i = 0; i < tree.types.length; i++)
+        {
+            choicesTaken[tree.types[i]] = 0;
+        }
     }
        
     function UpdateChoices()
@@ -107,18 +112,18 @@
 
 <style>
     prompt-container {
-        background-color: #d7d9db;
+        background-color: #d9dadb;
         position: absolute;
         height: 80%;
         width: 50%;
         top: 50%;
         left: 85%;
         transform:translate(-85%, -50%);
-        padding: 10px;
+        /*padding: 10px;*/
         font-size: 4vmin;
         font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
-        border: 4px solid #292c33
+        border: 16px solid #d9dadb;
     }
 
     flex-container {
@@ -146,11 +151,6 @@
         transform:translate(-99%, -2%);
     }
 
-    .flex-button {
-        margin-bottom: 3%; /* evil hack to center the flex box buttons, magic number */
-        margin-left: 5%;
-    }
-
     .button {
         color: black;
         width: 100%; /* use whole width of flex box*/
@@ -164,13 +164,14 @@
         border-radius: 8px;
         white-space: normal;
         word-wrap: break-word;
+        margin-left: 5%;
     }
 
     .button:hover {
         font-size: 2.5vmin;
     }
 
-    .static {
+    .static-box {
         color: black;
         width: 100%; /* use whole width of flex box*/
         height: 33vh;/* use 1/3 of screen per button */
@@ -178,10 +179,23 @@
         font-size: 2vmin;
         font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
-        background-color: #d7d9db 
+        background-color: #d7d9db;
+        margin-left: 5%;
     }
 
-    .GameStats {
+    .game-stats-box {
+        color: black;
+        width: 100%; /* use whole width of flex box*/
+        height: 33vh;/* use 1/3 of screen per button */
+        text-decoration: none;
+        font-size: 2vmin;
+        font-family: "FreeMono", "Lucida Console", monospace;
+        border-radius: 8px;
+        flex-direction: column;
+        border-radius: 0px;
+    }
+
+    .game-stats {
         color: black;
         text-align: center;
         font-size: 2vmin;
@@ -202,13 +216,11 @@
     <flex-container>
         {#if numBranches > 0}
             {#each currentNode.branches as branch, i}
-                <div class="flex-button">
                 <button
                     class="button"
                     style="background-color: {tree.typeToColor[buttonTypes[i]]}; border: 3px solid {tree.typeToBorderColor[buttonTypes[i]]};"
                     on:click={() => UpdateGame(i)}
                 >{choices[i]}</button>
-                </div>
             {/each}
         {:else}
             <div class="flex-button">
@@ -217,18 +229,18 @@
                 on:click={() => RestartGame()}
             >Restart the game!</button>
             </div>
-            <div class="flex-button">
-                <div class="static">
-                    <sub-flex-container>
-                        {#each tree.types as type, i}
-                            <div class="static" style="border: 3px solid {tree.typeToBorderColor[type]}; flex-direction: column; background-color: {tree.typeToColor[type]}; border-radius: 0px">
-                                <p class="GameStats">{tree.types[i]}</p>
-                                <p class="GameStats" style="padding-top: 50%; font-size: 4vmin">{choicesTaken[type]}</p>
-                            </div>
-                        {/each}
-                    </sub-flex-container>
-                </div> 
-            </div>
+            <div class="static-box">
+                <sub-flex-container>
+                    {#each tree.types as type, i}
+                        <div 
+                        class="game-stats-box" 
+                        style="border: 3px solid {tree.typeToBorderColor[type]}; background-color: {tree.typeToColor[type]};">
+                            <p class="game-stats">{tree.types[i]}</p>
+                            <p class="game-stats" style="padding-top: 50%; font-size: 4vmin">{choicesTaken[type]}</p>
+                        </div>
+                    {/each}
+                </sub-flex-container>
+            </div> 
         {/if}
     </flex-container>
 </body>
