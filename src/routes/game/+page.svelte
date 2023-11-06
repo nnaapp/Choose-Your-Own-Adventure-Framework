@@ -2,20 +2,21 @@
     import { goto } from '$app/navigation';
     import { gameTree } from '../../tree_store.ts';
 
+    // Interfact dictionary that associates a string with a number,
+    // this is used for keeping track of how many times the user has picked each choice type
     interface ChoiceDict
     {
         [key: string]: number;
     }
 
-    /// Story Tree Management ///
+    // Get a reference to the story tree Svelte store, which prevents regenerating it on every refresh
     let tree: StoryTree;
     gameTree.subscribe((value) => {
         console.log("Story tree read from store.")
         tree = value;
     });
 
-    // let types = tree.types;
-   
+    // Get reference to root node of story tree
     let currentNode = tree.GetRootNode();
 
     // Prompt for choices
@@ -24,18 +25,20 @@
 
     // Number of branches (typically the same for all, except leaf nodes which are 0)
     let numBranches = currentNode.GetNumBranches();
-    // Choice text, to respond to prompt
+    
+    // Choice text, to respond to prompt, this array is ordered
     let choices: string[] = new Array(numBranches);
     UpdateChoices();
 
-    // Type strings for buttons
-    let buttonTypes: string = new Array(numBranches);
+    // Type strings for each choice, these are defined in the JSON file for every node in the tree
+    let buttonTypes: string[] = new Array(numBranches);
     UpdateColors();
 
-    // Times the player took each type of choice
+    // Number of times the player picked each choice type, which are defined in the JSON file
     let choicesTaken: ChoiceDict = [];
     ResetChoiceCount();
-    
+
+    // Resets the choice counts to 0 for the entire dictionary
     function ResetChoiceCount()
     {
         for (let i = 0; i < tree.types.length; i++)
@@ -44,7 +47,8 @@
         }
         choicesTaken["TotalChoices"] = 0;
     }
-       
+
+    // Updates the choice text array to reflect the current node
     function UpdateChoices()
     {
         for (let i = 0; i < numBranches; i++)
@@ -53,6 +57,8 @@
         }
     }
 
+    // Update the current button type array to reflect the current node
+    // This is used to color the buttons correctly, as well as count choice types
     function UpdateColors()
     {
         for (let i = 0; i < numBranches; i++)
@@ -61,11 +67,13 @@
         }
     }
 
+    // Updates the story prompt to reflect the current node
     function UpdateCurrentPrompt()
     {
         prompt = currentNode.GetPrompt();
     }
 
+    // Move to the next node, number argument selects which choice to take (0...n - 1, where n is number of choices per node)
     function MoveToNext(index: number)
     {
         if (index < 0 || index >= numBranches) return;
@@ -73,6 +81,7 @@
         currentNode = currentNode.GetNext(index).node;
     }
 
+    // Updates all necessary data after moving to the node the user picked, and increments the choice count for that choice type
     function UpdateGame(choice: number)
     {
         choicesTaken[buttonTypes[choice]]++;
@@ -86,6 +95,7 @@
         console.log("Node change to: ID " + currentNode.GetID() + ".");
     }
 
+    // Resets the game by setting current node to the root of the tree, then updating all necessary data, and resetting choice type counts
     function RestartGame()
     {
         console.log(choicesTaken);
@@ -98,7 +108,8 @@
         console.log("Game reset, node changed to: ID " + currentNode.GetID() + ".");
     }
     ///////////////
-    
+
+    // Uses Svelte goto to return to the menu page
     function BackToMenu()
     {
         goto('..', { replaceState: false });
@@ -207,16 +218,20 @@
 </style>
 
 <body>
+    <!-- Top right corner return to menu button -->
     <button
         class="menu-button Interaction"
         on:click={() => BackToMenu()}
     >Return to Menu</button>
-    
+
+    <!-- Prompt box on right half of screen -->
     <prompt-container>
         <p>Prompt: {prompt}</p>
     </prompt-container>
 
+    <!-- Vertical flexbox to support any number of buttons stacked on top of each other -->
     <flex-container>
+        <!-- If this is not a leaf node, use an #each block to render one button per branch in the branch array -->
         {#if numBranches > 0}
             {#each currentNode.branches as branch, i}
                 <button
@@ -225,6 +240,7 @@
                     on:click={() => UpdateGame(i)}
                 >{choices[i]}</button>
             {/each}
+        <!-- If this is a leaf node, render a restart game button, as well as post-game stats -->
         {:else}
             <div class="flex-button">
             <button
@@ -232,6 +248,7 @@
                 on:click={() => RestartGame()}
             >Restart the game!</button>
             </div>
+            <!-- Render post-game stats in a secondary horizontal flexbox, colored to reflect the colors of each type -->
             <div class="static-box">
                 <sub-flex-container>
                     {#each tree.types as type, i}
