@@ -12,15 +12,15 @@
         width: 150px;
         height: 50px;
         position:absolute;
-        top: 60%;
+        top: 70%;
         left: 50%;
-        transform:translate(-50%, -60%);
+        transform:translate(-50%, -70%);
         background-color: #e0ecff;
         color: black;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        font-size: 2.5vmin;
         font-family: "FreeMono", "Lucida Console", monospace;
         transition-duration: 0.4s;
         border-radius: 8px;
@@ -29,9 +29,32 @@
     .button:hover {
         background-color: #f0fcff;
     }
+
+    .title {
+        top: 10%;
+        left: 50%;
+        position: absolute;
+        transform:translate(-50%, -10%);
+        color: white;
+        text-align: center;
+        font-family: "FreeMono", "Lucidia Console", monospace;
+    }
+
+    .title-header {
+        font-size: 8vmin;
+    }
+
+    .title-subtext {
+        font-size: 5vmin;
+    }
 </style>
 
 <body>
+    <div class="title">
+        <p class="title-header">TTU Nursing</p>
+        <p class="title-subtext">Choose Your Own Adventure Game</p>
+    </div>
+    
     <button
         class="button"
         on:click={() => startGame()}
