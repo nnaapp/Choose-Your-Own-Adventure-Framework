@@ -110,6 +110,10 @@ export class StoryTree
     private jsonIDHash: IDtoIndex;
     // Array of choice type names
     public types: string[];
+    // Menu screen title
+    public title: string;
+    // Menu screen title subtext (second line)
+    public titleSubtext: string;
     // Hashmap of type names to color codes (Cost: #FFFFFF, for example)
     public typeToColor: TypeToColor;
     public typeToHoverColor: TypeToColor;
@@ -126,6 +130,8 @@ export class StoryTree
         this.nodes = [];
         this.jsonIDHash = {};
         this.types = [];
+        this.title = "";
+        this.titleSubtext = "";
         this.typeToColor = {};
         this.typeToHoverColor = {};
         this.typeToBorderColor = {}
@@ -157,6 +163,8 @@ export class StoryTree
         var NewStoryTree = new StoryTree();
 
         NewStoryTree.branchCount = data.BranchCount;
+        NewStoryTree.title = data.Title;
+        NewStoryTree.titleSubtext = data.TitleSubtext;
 
         // If there is a mismatch between the number of choice types, and the number of colors, return null
         if (data.Types.length != data.Colors.length) return null;
@@ -207,6 +215,8 @@ export class StoryTree
 
 export type StoryTreeJSON = 
 {
+    Title: string;
+    TitleSubtext: string;
     Types: string[];
     Colors: string[];
     HoverColors: string[];

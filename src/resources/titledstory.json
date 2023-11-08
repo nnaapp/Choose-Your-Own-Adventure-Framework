@@ -1,0 +1,88 @@
+{
+    "Title": "TTU Nursing",
+    "TitleSubtext": "Choose Your Own Adventure Game",
+    "Types": [
+        "Cost",
+        "Time",
+        "Consequences"
+    ],
+    "Colors": [
+        "#96beff",
+        "#daffc9",
+        "#ffd299"
+    ],
+    "HoverColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#93C47D"
+    ],
+    "BorderColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#d98c2b"
+    ],
+    "BranchCount": "2",
+    "Tree": [
+        {
+            "ID": 0,
+            "Branches": [
+                1,
+                2
+            ],
+            "Types": [
+                "Cost",
+                "Consequences"
+            ],
+            "Texts": [
+                "Option A (Cost)",
+                "Option B (Consequences)"
+            ],
+            "Prompt": "Test 0"
+        },
+        {
+            "ID": 3,
+            "Branches": [
+                
+            ],
+            "Types": [
+                
+            ],
+            "Texts": [
+                
+            ],
+            "Prompt": "Test 3"
+        },
+        {
+            "ID": 2,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "Consequences",
+                "Time"
+            ],
+            "Texts": [
+                "Option A (Cost)",
+                "Option B (Time)"
+            ],
+            "Prompt": "Test 2"
+        },
+        {
+            "ID": 1,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "Time",
+                "Cost"
+            ],
+            "Texts": [
+                "Option A (Time)",
+                "Option B (Cost)"
+            ],
+            "Prompt": "Test 1"
+        }
+    ]
+}

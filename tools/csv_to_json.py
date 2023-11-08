@@ -2,8 +2,8 @@ import csv
 import json
 import sys
 
-if len(sys.argv) != 5:
-    print("Usage: csv_to_json.py tree.csv types.csv dest.json num_branches_per_node")
+if len(sys.argv) != 4:
+    print("Usage: csv_to_json.py tree.csv types.csv dest.json")
     exit(1)
 
 types = [] # type list
@@ -44,9 +44,13 @@ treeArr = []
 for pair in data:
     treeArr.append(data[pair])
 
+branchCount = input("How many branches per node (non-leaf-node)? ")
+title = input("What is the title header? ")
+lowerTitle = input("What is the title subtext? ")
+
 # Re-format this into a dict, because python JSON lib likes dicts,
 # with only two key/value pairs: number of branches per node, and the tree of nodes
-data = {'Types': types, 'Colors': colors, 'HoverColors': hovercolors, 'BorderColors': bordercolors, 'BranchCount': int(sys.argv[4]), 'Tree': treeArr}
+data = {'Title': title, 'TitleSubtext': lowerTitle, 'Types': types, 'Colors': colors, 'HoverColors': hovercolors, 'BorderColors': bordercolors, 'BranchCount': branchCount, 'Tree': treeArr}
 
 # Dump the data dict to JSON using JSON lib
 with open(sys.argv[3], 'w', encoding = 'utf-8') as jsonfile:

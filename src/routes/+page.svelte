@@ -1,5 +1,12 @@
-<script>
+<script lang="ts">
     import { goto } from '$app/navigation';
+    import { gameTree } from '../tree_store.ts';
+
+    let tree: StoryTree;
+    gameTree.subscribe((value) => {
+        console.log("Story tree read from store.")
+        tree = value;
+    });
 
     function startGame()
     {
@@ -31,6 +38,8 @@
     }
 
     .title {
+        width: 80%;
+        height: 20%;
         top: 10%;
         left: 50%;
         position: absolute;
@@ -50,9 +59,10 @@
 </style>
 
 <body>
+
     <div class="title">
-        <p class="title-header">TTU Nursing</p>
-        <p class="title-subtext">Choose Your Own Adventure Game</p>
+        <p class="title-header">{tree.title}</p>
+        <p class="title-subtext">{tree.titleSubtext}</p>
     </div>
     
     <button
