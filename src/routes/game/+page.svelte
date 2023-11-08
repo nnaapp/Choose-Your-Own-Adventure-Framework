@@ -181,7 +181,7 @@
         font-size: 2.5vmin;
     }
 
-    .static-box {
+    static-box {
         color: black;
         width: 100%; /* use whole width of flex box*/
         height: 33vh;/* use 1/3 of screen per button */
@@ -196,7 +196,7 @@
         overflow-wrap: break-word;
     }
 
-    .game-stats-box {
+    game-stats-box {
         color: black;
         width: 100%; /* use whole width of flex box*/
         height: 33vh;/* use 1/3 of screen per button */
@@ -209,6 +209,7 @@
         overflow-wrap: break-word;
     }
 
+    /* style for paragraph in postgame stats */
     .game-stats {
         color: black;
         text-align: center;
@@ -242,26 +243,23 @@
             {/each}
         <!-- If this is a leaf node, render a restart game button, as well as post-game stats -->
         {:else}
-            <div class="flex-button">
             <button
                 class="button Interaction"
                 on:click={() => RestartGame()}
             >Restart the game!</button>
-            </div>
             <!-- Render post-game stats in a secondary horizontal flexbox, colored to reflect the colors of each type -->
-            <div class="static-box">
+            <static-box>
                 <sub-flex-container>
                     {#each tree.types as type, i}
-                        <div 
-                        class="game-stats-box" 
+                        <game-stats-box
                         style="border: 3px solid {tree.typeToBorderColor[type]}; background-color: {tree.typeToColor[type]};">
                             <p class="game-stats">{tree.types[i]}</p>
                             <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type]}</p>
                             <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
-                        </div>
+                        </game-stats-box>
                     {/each}
                 </sub-flex-container>
-            </div> 
+            </static-box> 
         {/if}
     </flex-container>
 </body>

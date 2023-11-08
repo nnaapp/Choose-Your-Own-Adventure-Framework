@@ -25,6 +25,10 @@
         transition-duration: 0.4s;
         border-radius: 8px;
     }
+
+    .button:hover {
+        background-color: #f0fcff;
+    }
 </style>
 
 <body>
