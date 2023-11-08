@@ -37,7 +37,7 @@
         background-color: #f0fcff;
     }
 
-    .title {
+    menu-title {
         width: 80%;
         height: 20%;
         top: 10%;
@@ -60,10 +60,10 @@
 
 <body>
 
-    <div class="title">
+    <menu-title>
         <p class="title-header">{tree.title}</p>
         <p class="title-subtext">{tree.titleSubtext}</p>
-    </div>
+    </menu-title>
     
     <button
         class="button"
