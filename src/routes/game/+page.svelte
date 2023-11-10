@@ -87,8 +87,6 @@
     // Updates all necessary data after moving to the node the user picked, and increments the choice count for that choice type
     function UpdateGame(choice: number)
     {
-        document.getElementById("Sidebar").style.width = "250px";
-    
         choicesTaken[buttonTypes[choice]]++;
         choicesTaken["TotalChoices"]++;
     
