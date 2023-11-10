@@ -16,6 +16,9 @@
         tree = value;
     });
 
+    // State of side bar 
+    let sidebarOn: boolean = false;
+
     // Get reference to root node of story tree
     let currentNode = tree.GetRootNode();
 
@@ -84,6 +87,8 @@
     // Updates all necessary data after moving to the node the user picked, and increments the choice count for that choice type
     function UpdateGame(choice: number)
     {
+        document.getElementById("Sidebar").style.width = "250px";
+    
         choicesTaken[buttonTypes[choice]]++;
         choicesTaken["TotalChoices"]++;
     
@@ -106,6 +111,22 @@
         UpdateChoices();
         UpdateColors();
         console.log("Game reset, node changed to: ID " + currentNode.GetID() + ".");
+    }
+
+    function ToggleSidebar()
+    {
+        if (!sidebarOn)
+        {
+            document.getElementById("Sidebar").style.width = "250px";
+            document.getElementById("Burger").style.width = "300px";
+            sidebarOn = true;
+        }
+        else
+        {
+            document.getElementById("Sidebar").style.width = "0";
+            document.getElementById("Burger").style.width = "50px";
+            sidebarOn = false;
+        }
     }
     ///////////////
 
@@ -216,14 +237,56 @@
         font-size: 2vmin;
         font-family: "FreeMono", "Lucidia Console", monospace;
     }
+
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #000000;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+    }
+
+    .burger {
+        width: 50px;
+        height: 30px;
+        position: absolute;
+        left: 100%;
+        top: 1%;
+        transform:translate(-100%, -1%);
+        z-index: 1;
+        transition: 0.5s;
+    }
+
+    .burger-line {
+        width: 25px;
+        height: 3px;
+        background-color: #FFFFFF;
+        margin: 5px;
+        display: block;
+        right: 90%;
+    }
 </style>
 
 <body>
+    <div id="Sidebar" class="sidebar">
+        <p style="color: white;">test :D</p>
+    </div>
+
+    <div 
+    id="Burger"
+    class="burger"
+    on:click={() => ToggleSidebar()}>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+    </div>
+    
     <!-- Top right corner return to menu button -->
-    <button
-        class="menu-button Interaction"
-        on:click={() => BackToMenu()}
-    >Return to Menu</button>
 
     <!-- Prompt box on right half of screen -->
     <prompt-container>
