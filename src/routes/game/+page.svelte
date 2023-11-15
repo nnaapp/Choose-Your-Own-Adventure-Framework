@@ -115,13 +115,13 @@
     {
         if (!sidebarOn)
         {
-            document.getElementById("Sidebar").style.width = "250px";
+            document.getElementById("Sidebar").style.right = "0px";
             document.getElementById("Burger").style.width = "300px";
             sidebarOn = true;
         }
         else
         {
-            document.getElementById("Sidebar").style.width = "0";
+            document.getElementById("Sidebar").style.right = "-250px";
             document.getElementById("Burger").style.width = "50px";
             sidebarOn = false;
         }
@@ -164,16 +164,6 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
-    }
-
-    .menu-button {
-        position: absolute;
-        font-size: 1.5vmin;
-        height: 5%;
-        width: 8%;
-        top: 2%;
-        left: 99%;
-        transform:translate(-99%, -2%);
     }
 
     .button {
@@ -234,15 +224,32 @@
 
     .sidebar {
         height: 100%;
-        width: 0;
+        width: 250px;
         position: fixed;
         z-index: 1;
         top: 0;
-        right: 0;
-        background-color: #000000;
-        overflow-x: hidden;
+        right: -250px;
+        background-image: linear-gradient(#334054, #151c26); 
+        overflow: hidden;
         padding-top: 60px;
         transition: 0.5s;
+    }
+    
+    .sidebar-button {
+        font-size: 1.5vmin;
+        position: absolute;
+        left: 50%;
+        transform:translate(-50%, 0%);
+        height: 5%;
+        width: 100%;
+        color: white;
+        background-color: #0d1117;
+        transition: 0.5s;
+        border: none;
+    }
+
+    .sidebar-button:hover {
+        background-color: #242a34;
     }
 
     .burger {
@@ -268,7 +275,7 @@
 
 <body>
     <div id="Sidebar" class="sidebar">
-        <p style="color: white;">test :D</p>
+        <button class="sidebar-button">Menu</button>
     </div>
 
     <div 
