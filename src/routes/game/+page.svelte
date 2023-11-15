@@ -275,7 +275,9 @@
 
 <body>
     <div id="Sidebar" class="sidebar">
-        <button class="sidebar-button">Menu</button>
+        <button 
+        class="sidebar-button"
+        on:click={() => BackToMenu()}>Menu</button>
     </div>
 
     <div 
