@@ -146,7 +146,6 @@
         transform:translate(-85%, -50%);
         /*padding: 10px;*/
         font-size: 4vmin;
-        font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
         border: 16px solid #d9dadb;
         overflow-wrap: break-word;
@@ -185,7 +184,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 2vmin;
-        font-family: "FreeMono", "Lucida Console", monospace;
+        font-family: inherit;
         transition-duration: 0.4s;
         border-radius: 8px;
         white-space: normal;
@@ -206,7 +205,6 @@
         height: 33vh;/* use 1/3 of screen per button */
         text-decoration: none;
         font-size: 2vmin;
-        font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
         background-color: #d7d9db;
         margin-left: 5%;
@@ -221,7 +219,6 @@
         height: 33vh;/* use 1/3 of screen per button */
         text-decoration: none;
         font-size: 2vmin;
-        font-family: "FreeMono", "Lucida Console", monospace;
         border-radius: 8px;
         flex-direction: column;
         border-radius: 0px;
@@ -233,7 +230,6 @@
         color: black;
         text-align: center;
         font-size: 2vmin;
-        font-family: "FreeMono", "Lucidia Console", monospace;
     }
 
     .sidebar {

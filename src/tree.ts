@@ -118,6 +118,8 @@ export class StoryTree
     public typeToColor: TypeToColor;
     public typeToHoverColor: TypeToColor;
     public typeToBorderColor: TypeToColor;
+    // Array of fonts for webpage
+    public fonts: string[];
     // Branches per node
     public branchCount: number;
 
@@ -134,7 +136,8 @@ export class StoryTree
         this.titleSubtext = "";
         this.typeToColor = {};
         this.typeToHoverColor = {};
-        this.typeToBorderColor = {}
+        this.typeToBorderColor = {};
+        this.fonts = [];
         this.branchCount = 0;
     }
 
@@ -175,6 +178,7 @@ export class StoryTree
             NewStoryTree.typeToColor[data.Types[i]] = data.Colors[i];
             NewStoryTree.typeToHoverColor[data.Types[i]] = data.HoverColors[i];
             NewStoryTree.typeToBorderColor[data.Types[i]] = data.BorderColors[i];
+            NewStoryTree.fonts = data.Fonts;
         }
 
         // Push every node from the JSON onto the nodes array,
@@ -217,6 +221,7 @@ export type StoryTreeJSON =
 {
     Title: string;
     TitleSubtext: string;
+    Fonts: string[];
     Types: string[];
     Colors: string[];
     HoverColors: string[];

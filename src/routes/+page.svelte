@@ -28,9 +28,9 @@
         text-decoration: none;
         display: inline-block;
         font-size: 2.5vmin;
-        font-family: "FreeMono", "Lucida Console", monospace;
         transition-duration: 0.4s;
         border-radius: 8px;
+        font-family: inherit;
     }
 
     .button:hover {
@@ -46,7 +46,6 @@
         transform:translate(-50%, -10%);
         color: white;
         text-align: center;
-        font-family: "FreeMono", "Lucidia Console", monospace;
     }
 
     .title-header {
