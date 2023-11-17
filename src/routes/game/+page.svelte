@@ -16,9 +16,6 @@
         tree = value;
     });
 
-    // State of side bar 
-    let sidebarOn: boolean = false;
-
     // Get reference to root node of story tree
     let currentNode = tree.GetRootNode();
 
@@ -111,6 +108,9 @@
         console.log("Game reset, node changed to: ID " + currentNode.GetID() + ".");
     }
 
+    // State of side bar 
+    let sidebarOn: boolean = false;
+    // Changes CSS values to toggle the side bar menu on and off
     function ToggleSidebar()
     {
         if (!sidebarOn)
@@ -144,7 +144,6 @@
         top: 50%;
         left: 85%;
         transform:translate(-85%, -50%);
-        /*padding: 10px;*/
         font-size: 4vmin;
         border-radius: 8px;
         border: 16px solid #d9dadb;
@@ -216,10 +215,17 @@
     }
 
     /* style for paragraph in postgame stats */
-    .game-stats {
+    .game-stats-header {
         color: black;
         text-align: center;
         font-size: 2vmin;
+    }
+
+    .game-stats {
+        color: black;
+        text-align: center;
+        font-size: 4vmin;
+        padding-top: 20%;
     }
 
     sidebar {
@@ -237,6 +243,7 @@
     
     .sidebar-button {
         font-size: 1.5vmin;
+        font: inherit;
         position: relative;
         left: 50%;
         transform:translate(-50%, 0%);
@@ -322,10 +329,10 @@
                 <sub-flex-container>
                     {#each tree.types as type, i}
                         <game-stats-box
-                        style="border: 3px solid {tree.typeToBorderColor[type]}; background-color: {tree.typeToColor[type]};">
-                            <p class="game-stats">{tree.types[i]}</p>
-                            <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type]}</p>
-                            <p class="game-stats" style="padding-top: 20%; font-size: 4vmin">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
+                        style="background-color: {tree.typeToColor[type]}; border: 3px solid {tree.typeToBorderColor[type]};">
+                            <p class="game-stats-header">{tree.types[i]}</p>
+                            <p class="game-stats">{choicesTaken[type]}</p>
+                            <p class="game-stats">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
                         </game-stats-box>
                     {/each}
                 </sub-flex-container>
