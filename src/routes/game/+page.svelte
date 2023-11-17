@@ -222,7 +222,7 @@
         font-size: 2vmin;
     }
 
-    .sidebar {
+    sidebar {
         height: 100%;
         width: 250px;
         position: fixed;
@@ -237,7 +237,7 @@
     
     .sidebar-button {
         font-size: 1.5vmin;
-        position: absolute;
+        position: relative;
         left: 50%;
         transform:translate(-50%, 0%);
         height: 5%;
@@ -246,6 +246,7 @@
         background-color: #0d1117;
         transition: 0.5s;
         border: none;
+        margin-top: 5px;
     }
 
     .sidebar-button:hover {
@@ -263,7 +264,7 @@
         transition: 0.5s;
     }
 
-    .burger-line {
+    burger-line {
         width: 25px;
         height: 3px;
         background-color: #FFFFFF;
@@ -274,23 +275,26 @@
 </style>
 
 <body>
-    <div id="Sidebar" class="sidebar">
+    <!-- Side bar menu -->
+    <sidebar id="Sidebar">
         <button 
         class="sidebar-button"
         on:click={() => BackToMenu()}>Menu</button>
-    </div>
+        <button 
+        class="sidebar-button"
+        on:click={() => RestartGame()}>Restart</button>
+    </sidebar>
 
+    <!-- Burger icon (3 lines) for opening side bar -->
     <div 
     id="Burger"
     class="burger"
     on:click={() => ToggleSidebar()}>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
+        <burger-line></burger-line>
+        <burger-line></burger-line>
+        <burger-line></burger-line>
     </div>
     
-    <!-- Top right corner return to menu button -->
-
     <!-- Prompt box on right half of screen -->
     <prompt-container>
         <p>Prompt: {prompt}</p>

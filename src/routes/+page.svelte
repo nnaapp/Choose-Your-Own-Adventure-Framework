@@ -16,25 +16,25 @@
 
 <style>
     .button {
-        width: 150px;
+        width: 100%;
         height: 50px;
         position:absolute;
         top: 70%;
         left: 50%;
         transform:translate(-50%, -70%);
-        background-color: #e0ecff;
-        color: black;
+        background-color: #0d1117;
+        color: white;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 2.5vmin;
         transition-duration: 0.4s;
-        border-radius: 8px;
         font-family: inherit;
+        border: none;
     }
 
     .button:hover {
-        background-color: #f0fcff;
+        background-color: #242a34;
     }
 
     menu-title {
