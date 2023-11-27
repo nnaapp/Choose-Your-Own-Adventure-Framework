@@ -116,13 +116,17 @@
         if (!sidebarOn)
         {
             document.getElementById("Sidebar").style.right = "0px";
-            document.getElementById("Burger").style.width = "300px";
+            document.getElementById("Burger-Mid").style.opacity = "0";
+            document.getElementById("Burger-Top").style.transform = "rotate(45deg) translate(6px, 6px)"
+            document.getElementById("Burger-Low").style.transform = "rotate(135deg) translate(-5px, 5px)"
             sidebarOn = true;
         }
         else
         {
             document.getElementById("Sidebar").style.right = "-250px";
-            document.getElementById("Burger").style.width = "50px";
+            document.getElementById("Burger-Mid").style.opacity = "100";
+            document.getElementById("Burger-Top").style.transform = "rotate(0deg)"
+            document.getElementById("Burger-Low").style.transform = "rotate(0deg)"
             sidebarOn = false;
         }
     }
@@ -278,6 +282,7 @@
         margin: 5px;
         display: block;
         right: 90%;
+        transition: 0.5s;
     }
 </style>
 
@@ -297,9 +302,9 @@
     id="Burger"
     class="burger"
     on:click={() => ToggleSidebar()}>
-        <burger-line></burger-line>
-        <burger-line></burger-line>
-        <burger-line></burger-line>
+        <burger-line id="Burger-Top"></burger-line>
+        <burger-line id="Burger-Mid"></burger-line>
+        <burger-line id="Burger-Low"></burger-line>
     </div>
     
     <!-- Prompt box on right half of screen -->
