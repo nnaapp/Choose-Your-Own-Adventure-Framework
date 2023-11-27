@@ -105,6 +105,7 @@
         UpdateCurrentPrompt();
         UpdateChoices();
         UpdateColors();
+        if (sidebarOn) ToggleSidebar();
         console.log("Game reset, node changed to: ID " + currentNode.GetID() + ".");
     }
 
@@ -130,7 +131,6 @@
             sidebarOn = false;
         }
     }
-    ///////////////
 
     // Uses Svelte goto to return to the menu page
     function BackToMenu()
