@@ -1,5 +1,4 @@
 <script lang="ts">
-    import '../global.css';
     import { gameTree } from '../tree_store.ts';
     import { onNavigate } from '$app/navigation';
 
@@ -8,10 +7,6 @@
         console.log("Story tree read from store.")
         tree = value;
     });
-
-    let primaryFont = tree.fonts[0];
-    let backupFont = tree.fonts[1];
-    let genericFont = tree.fonts[2];
 
     // From SvelteKit guide on page transitions
     onNavigate((navigation) => {
@@ -27,6 +22,17 @@
 </script>
 
 <style>
+:global(body) {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #19202A;
+    background-image: linear-gradient(#252e3d, #0D1117); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+		font-family: var(--primary), var(--secondary), var(--tertiary);
+}
+
 @keyframes fade-in {
 	from {
 		opacity: 0;

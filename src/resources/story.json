@@ -1,11 +1,38 @@
 {
-    "BranchCount": 3,
+    "Title": "TTU Nursing",
+    "TitleSubtext": "Adventure Game",
+    "Fonts": [
+        "Lucidia Console",
+        "Consolas",
+        "monospace"
+    ],
+    "Types": [
+        "Cost",
+        "Time",
+        "Consequences"
+    ],
+    "Colors": [
+        "#96beff",
+        "#daffc9",
+        "#ffd299"
+    ],
+    "HoverColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#93C47D"
+    ],
+    "BorderColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#d98c2b"
+    ],
+    "BranchCount": 2,
     "Tree": [
         {
             "ID": 0,
             "Branches": [
-                "1",
-                "2"
+                1,
+                2
             ],
             "Types": [
                 "Cost",
@@ -33,8 +60,8 @@
         {
             "ID": 2,
             "Branches": [
-                "3",
-                "3"
+                3,
+                3
             ],
             "Types": [
                 "Consequences",
@@ -49,8 +76,8 @@
         {
             "ID": 1,
             "Branches": [
-                "3",
-                "3"
+                3,
+                3
             ],
             "Types": [
                 "Time",

@@ -57,8 +57,7 @@
     }
 </style>
 
-<body>
-
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}">
     <menu-title>
         <p class="title-header">{tree.title}</p>
         <p class="title-subtext">{tree.titleSubtext}</p>

@@ -286,7 +286,7 @@
     }
 </style>
 
-<body>
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}">
     <!-- Side bar menu -->
     <sidebar id="Sidebar">
         <button 

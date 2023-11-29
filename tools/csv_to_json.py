@@ -55,7 +55,7 @@ fontFamily.append(input("What 2nd backup font do you want to use? "))
     
 # Re-format this into a dict, because python JSON lib likes dicts,
 # with only two key/value pairs: number of branches per node, and the tree of nodes
-data = {'Title': title, 'TitleSubtext': lowerTitle, 'Fonts': fontFamily, 'Types': types, 'Colors': colors, 'HoverColors': hovercolors, 'BorderColors': bordercolors, 'BranchCount': branchCount, 'Tree': treeArr}
+data = {'Title': title, 'TitleSubtext': lowerTitle, 'Fonts': fontFamily, 'Types': types, 'Colors': colors, 'HoverColors': hovercolors, 'BorderColors': bordercolors, 'BranchCount': int(branchCount), 'Tree': treeArr}
 
 # Dump the data dict to JSON using JSON lib
 with open(sys.argv[3], 'w', encoding = 'utf-8') as jsonfile:
