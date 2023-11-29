@@ -255,6 +255,7 @@
         width: 100%;
         color: white;
         background-color: #0d1117;
+        font-size: 2vmin;
         transition: 0.5s;
         border: none;
         margin-top: 5px;
