@@ -189,7 +189,7 @@
     }
 
     .button:hover {
-        font-size: 2.5vmin;
+        transform: scale(1.05);
     }
 
     static-box {
