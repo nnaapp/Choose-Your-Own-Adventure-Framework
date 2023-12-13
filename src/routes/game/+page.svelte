@@ -266,14 +266,20 @@
     }
 
     .burger {
+        all: unset;
         width: 50px;
         height: 30px;
         position: absolute;
         left: 100%;
         top: 1%;
         transform:translate(-100%, -1%);
+        background: rgba(0,0,0,0);
         z-index: 1;
         transition: 0.5s;
+    }
+
+    .burger:focus {
+        outline: revert;
     }
 
     burger-line {
@@ -299,14 +305,14 @@
     </sidebar>
 
     <!-- Burger icon (3 lines) for opening side bar -->
-    <div 
+    <button 
     id="Burger"
     class="burger"
     on:click={() => ToggleSidebar()}>
         <burger-line id="Burger-Top"></burger-line>
         <burger-line id="Burger-Mid"></burger-line>
         <burger-line id="Burger-Low"></burger-line>
-    </div>
+    </button>
     
     <!-- Prompt box on right half of screen -->
     <prompt-container>
