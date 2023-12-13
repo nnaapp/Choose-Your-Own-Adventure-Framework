@@ -28,7 +28,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 2.5vmin;
-        transition-duration: 0.4s;
+        transition: background-color 0.4s;
         font-family: inherit;
         border: none;
     }

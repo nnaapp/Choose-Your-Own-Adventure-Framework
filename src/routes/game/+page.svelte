@@ -172,13 +172,13 @@
     .button {
         color: black;
         width: 100%; /* use whole width of flex box*/
-        height: 33vh;/* use 1/3 of screen per button */
+        height: 33%;/* use 1/3 of screen per button */
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 2vmin;
         font-family: inherit;
-        transition-duration: 0.4s;
+        transition: transform 0.4s;
         border-radius: 8px;
         white-space: normal;
         word-wrap: break-word;
@@ -195,7 +195,7 @@
     static-box {
         color: black;
         width: 100%; /* use whole width of flex box*/
-        height: 33vh;/* use 1/3 of screen per button */
+        height: 33%;/* use 1/3 of screen per button */
         text-decoration: none;
         font-size: 2vmin;
         border-radius: 8px;
@@ -204,18 +204,20 @@
         margin-top: 1%;
         margin-bottom: 1%;
         overflow-wrap: break-word;
+        word-wrap: break-word;
     }
 
     game-stats-box {
         color: black;
-        width: 100%; /* use whole width of flex box*/
-        height: 33vh;/* use 1/3 of screen per button */
+        width: 100%; 
+        height: 33vh;
         text-decoration: none;
         font-size: 2vmin;
         border-radius: 8px;
         flex-direction: column;
         border-radius: 0px;
         overflow-wrap: break-word;
+        word-wrap: break-word;
     }
 
     /* style for paragraph in postgame stats */
@@ -251,12 +253,12 @@
         position: relative;
         left: 50%;
         transform:translate(-50%, 0%);
-        height: 5%;
+        height: 40px;
         width: 100%;
         color: white;
         background-color: #0d1117;
         font-size: 2vmin;
-        transition: 0.5s;
+        transition: background-color 0.5s;
         border: none;
         margin-top: 5px;
     }
@@ -275,7 +277,7 @@
         transform:translate(-100%, -1%);
         background: rgba(0,0,0,0);
         z-index: 1;
-        transition: 0.5s;
+        transition: transform 0.5s;
     }
 
     .burger:focus {
