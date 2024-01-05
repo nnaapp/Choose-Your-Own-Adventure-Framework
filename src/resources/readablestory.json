@@ -1,0 +1,93 @@
+{
+    "Title": "Color Preference",
+    "TitleSubtext": "Questionnaire",
+    "Fonts": [
+        "Lucidia",
+        "monospace",
+        "monospace"
+    ],
+    "Types": [
+        "Blue",
+        "Green",
+        "Orange"
+    ],
+    "Colors": [
+        "#96beff",
+        "#daffc9",
+        "#ffd299"
+    ],
+    "HoverColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#93C47D"
+    ],
+    "BorderColors": [
+        "#4A86E8",
+        "#93C47D",
+        "#d98c2b"
+    ],
+    "BranchCount": 2,
+    "Tree": [
+        {
+            "ID": 0,
+            "Branches": [
+                1,
+                2
+            ],
+            "Types": [
+                "Blue",
+                "Orange"
+            ],
+            "Texts": [
+                "Blue",
+                "Orange"
+            ],
+            "Prompt": "Which do you like more, blue or orange? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nis"
+        },
+        {
+            "ID": 3,
+            "Branches": [
+                
+            ],
+            "Types": [
+                
+            ],
+            "Texts": [
+                
+            ],
+            "Prompt": "Thank you for telling me!"
+        },
+        {
+            "ID": 2,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "Orange",
+                "Green"
+            ],
+            "Texts": [
+                "Darker orange",
+                "Actually I prefer green"
+            ],
+            "Prompt": "Do you prefer lighter orange, or darker orange?"
+        },
+        {
+            "ID": 1,
+            "Branches": [
+                3,
+                3
+            ],
+            "Types": [
+                "Blue",
+                "Blue"
+            ],
+            "Texts": [
+                "Lighter blue",
+                "Darker blue"
+            ],
+            "Prompt": "Do you prefer lighter blue, or darker blue?"
+        }
+    ]
+}

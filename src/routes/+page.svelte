@@ -15,26 +15,30 @@
 </script>
 
 <style>
+    body {
+        color: white;
+    }
+    
     .button {
         width: 100%;
         height: 50px;
         position:absolute;
         top: 70%;
         left: 50%;
-        transform:translate(-50%, -70%);
-        background-color: #0d1117;
         color: white;
+        transform:translate(-50%, -70%);
+        background-color: var(--buttonColor);
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 2.5vmin;
-        transition: background-color 0.4s;
+        transition: filter 0.5s;
         font-family: inherit;
         border: none;
     }
 
     .button:hover {
-        background-color: #242a34;
+        filter: brightness(1.5);
     }
 
     menu-title {
@@ -44,7 +48,6 @@
         left: 50%;
         position: absolute;
         transform:translate(-50%, -10%);
-        color: white;
         text-align: center;
     }
 
@@ -57,7 +60,7 @@
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}">
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}">
     <menu-title>
         <p class="title-header">{tree.title}</p>
         <p class="title-subtext">{tree.titleSubtext}</p>
@@ -65,6 +68,7 @@
     
     <button
         class="button"
+        style="--buttonColor: {tree.accentColor};"
         on:click={() => startGame()}
     >Start Game</button>
 </body>

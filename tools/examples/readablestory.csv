@@ -1,0 +1,5 @@
+ID,Branches,Types,Texts,Prompt
+0,"1,2","Cost, Consequences","Blue, Orange","Which do you like more, blue or orange?"
+3,,,,Thank you for telling me!
+2,"3,3","Consequences, Time","Darker orange, Actually I prefer green","Do you prefer lighter orange, or darker orange?"
+1,"3,3","Cost, Cost","Lighter blue, Darker blue","Do you prefer lighter blue, or darker blue?"

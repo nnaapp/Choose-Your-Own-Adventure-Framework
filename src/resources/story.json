@@ -1,11 +1,16 @@
 {
     "Title": "TTU Nursing",
-    "TitleSubtext": "Adventure Game",
+    "TitleSubtext": "Choice Game",
     "Fonts": [
         "Lucidia Console",
-        "Consolas",
+        "Lucidia",
         "monospace"
     ],
+    "BackgroundColors": [
+        "#252e3d",
+        "#0d1117"
+    ],
+    "AccentColor": "#0d1117",
     "Types": [
         "Cost",
         "Time",
@@ -15,11 +20,6 @@
         "#96beff",
         "#daffc9",
         "#ffd299"
-    ],
-    "HoverColors": [
-        "#4A86E8",
-        "#93C47D",
-        "#93C47D"
     ],
     "BorderColors": [
         "#4A86E8",

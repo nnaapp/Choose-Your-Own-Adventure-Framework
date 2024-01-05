@@ -151,7 +151,7 @@
         font-size: 4vmin;
         border-radius: 8px;
         border: 16px solid #d9dadb;
-        overflow-wrap: break-word;
+        display: flex;
     }
 
     flex-container {
@@ -170,19 +170,16 @@
     }
 
     .button {
-        color: black;
-        width: 100%; /* use whole width of flex box*/
-        height: 33%;/* use 1/3 of screen per button */
+        width: 100%;
+        height: 33%;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 2vmin;
+        font-size: 3vmin;
         font-family: inherit;
         transition: transform 0.4s;
         border-radius: 8px;
         white-space: normal;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
         margin-left: 5%;
         margin-top: 1%;
         margin-bottom: 1%;
@@ -192,10 +189,14 @@
         transform: scale(1.05);
     }
 
+    .button:active {
+        transition: transform 0.2s;
+        transform: scale(1);
+    }
+
     static-box {
-        color: black;
-        width: 100%; /* use whole width of flex box*/
-        height: 33%;/* use 1/3 of screen per button */
+        width: 100%;
+        height: 33%;
         text-decoration: none;
         font-size: 2vmin;
         border-radius: 8px;
@@ -203,12 +204,9 @@
         margin-left: 5%;
         margin-top: 1%;
         margin-bottom: 1%;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
     }
 
     game-stats-box {
-        color: black;
         width: 100%; 
         height: 33vh;
         text-decoration: none;
@@ -216,22 +214,23 @@
         border-radius: 8px;
         flex-direction: column;
         border-radius: 0px;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
     }
 
     /* style for paragraph in postgame stats */
     .game-stats-header {
-        color: black;
         text-align: center;
         font-size: 2vmin;
     }
 
     .game-stats {
-        color: black;
         text-align: center;
         font-size: 4vmin;
         padding-top: 20%;
+        transition: transform 0.5s;
+    }
+
+    .game-stats:hover {
+        transform: scale(1.2);
     }
 
     sidebar {
@@ -241,10 +240,11 @@
         z-index: 1;
         top: 0;
         right: -250px;
-        background-image: linear-gradient(#334054, #151c26); 
+        background-image: linear-gradient(var(--sidebarColor1), var(--sidebarColor2));
+        filter: brightness(1.2); 
         overflow: hidden;
         padding-top: 60px;
-        transition: 0.5s;
+        transition: right 0.5s;
     }
     
     .sidebar-button {
@@ -256,15 +256,15 @@
         height: 40px;
         width: 100%;
         color: white;
-        background-color: #0d1117;
-        font-size: 2vmin;
-        transition: background-color 0.5s;
+        background-color: var(--buttonColor);
+        font-size: 12px;
+        transition: filter 0.5s;
         border: none;
         margin-top: 5px;
     }
 
     .sidebar-button:hover {
-        background-color: #242a34;
+        filter: brightness(1.5);
     }
 
     .burger {
@@ -291,13 +291,13 @@
         margin: 5px;
         display: block;
         right: 90%;
-        transition: 0.5s;
+        transition: transform 0.5s;
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}">
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}">
     <!-- Side bar menu -->
-    <sidebar id="Sidebar">
+    <sidebar id="Sidebar" style="--buttonColor: {tree.accentColor}; --sidebarColor1: {tree.backgroundColors[0]}; --sidebarColor2: {tree.backgroundColors[1]};">
         <button 
         class="sidebar-button"
         on:click={() => BackToMenu()}>Menu</button>
@@ -312,13 +312,13 @@
     class="burger"
     on:click={() => ToggleSidebar()}>
         <burger-line id="Burger-Top"></burger-line>
-        <burger-line id="Burger-Mid"></burger-line>
+        <burger-line id="Burger-Mid" style="transition: opacity 0.25s"></burger-line>
         <burger-line id="Burger-Low"></burger-line>
     </button>
     
     <!-- Prompt box on right half of screen -->
     <prompt-container>
-        <p>Prompt: {prompt}</p>
+        <p style="margin: auto;">{prompt}</p>
     </prompt-container>
 
     <!-- Vertical flexbox to support any number of buttons stacked on top of each other -->

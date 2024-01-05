@@ -110,6 +110,10 @@ export class StoryTree
     private jsonIDHash: IDtoIndex;
     // Array of choice type names
     public types: string[];
+    // Colors for background image
+    public backgroundColors: string[];
+    // Color for background color dependent elements (menu buttons)
+    public accentColor: string;
     // Menu screen title
     public title: string;
     // Menu screen title subtext (second line)
@@ -132,6 +136,8 @@ export class StoryTree
         this.nodes = [];
         this.jsonIDHash = {};
         this.types = [];
+        this.backgroundColors = [];
+        this.accentColor = "";
         this.title = "";
         this.titleSubtext = "";
         this.typeToColor = {};
@@ -168,6 +174,13 @@ export class StoryTree
         NewStoryTree.branchCount = data.BranchCount;
         NewStoryTree.title = data.Title;
         NewStoryTree.titleSubtext = data.TitleSubtext;
+        NewStoryTree.fonts = data.Fonts;
+        NewStoryTree.backgroundColors = data.BackgroundColors;
+        if (NewStoryTree.backgroundColors.length < 2)
+        {
+            NewStoryTree.backgroundColors = ["#000000", "#000000"];
+        }
+        NewStoryTree.accentColor = data.AccentColor;
 
         // If there is a mismatch between the number of choice types, and the number of colors, return null
         if (data.Types.length != data.Colors.length) return null;
@@ -176,10 +189,9 @@ export class StoryTree
         {
             NewStoryTree.types[i] = data.Types[i];
             NewStoryTree.typeToColor[data.Types[i]] = data.Colors[i];
-            NewStoryTree.typeToHoverColor[data.Types[i]] = data.HoverColors[i];
             NewStoryTree.typeToBorderColor[data.Types[i]] = data.BorderColors[i];
-            NewStoryTree.fonts = data.Fonts;
         }
+
 
         // Push every node from the JSON onto the nodes array,
         // and hash their IDs to indices in jsonIDHash
@@ -222,6 +234,8 @@ export type StoryTreeJSON =
     Title: string;
     TitleSubtext: string;
     Fonts: string[];
+    BackgroundColors: string[];
+    AccentColor: string;
     Types: string[];
     Colors: string[];
     HoverColors: string[];

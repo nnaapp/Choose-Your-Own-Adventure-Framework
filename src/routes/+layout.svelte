@@ -27,10 +27,13 @@
     padding: 0;
     margin: 0;
     background-color: #19202A;
-    background-image: linear-gradient(#252e3d, #0D1117); 
+    background-image: linear-gradient(var(--bkgColor1), var(--bkgColor2)); 
     background-repeat: no-repeat;
     background-attachment: fixed;
 		font-family: var(--primary), var(--secondary), var(--tertiary);
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		color: black;
 }
 
 @keyframes fade-in {
