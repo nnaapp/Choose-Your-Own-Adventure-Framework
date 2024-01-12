@@ -16,7 +16,7 @@
 
 <style>
     body {
-        color: white;
+        color: var(--textColor);
     }
     
     .button {
@@ -25,9 +25,9 @@
         position:absolute;
         top: 70%;
         left: 50%;
-        color: white;
         transform:translate(-50%, -70%);
         background-color: var(--buttonColor);
+        color: inherit;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -60,7 +60,8 @@
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}">
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; 
+    --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}; --textColor: {tree.accentColor};">
     <menu-title>
         <p class="title-header">{tree.title}</p>
         <p class="title-subtext">{tree.titleSubtext}</p>
@@ -68,7 +69,7 @@
     
     <button
         class="button"
-        style="--buttonColor: {tree.accentColor};"
+        style="--buttonColor: {tree.menuColor};;"
         on:click={() => startGame()}
     >Start Game</button>
 </body>

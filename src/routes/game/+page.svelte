@@ -255,7 +255,7 @@
         transform:translate(-50%, 0%);
         height: 40px;
         width: 100%;
-        color: white;
+        color: var(--textColor);
         background-color: var(--buttonColor);
         font-size: 12px;
         transition: filter 0.5s;
@@ -287,7 +287,7 @@
     burger-line {
         width: 25px;
         height: 3px;
-        background-color: #FFFFFF;
+        background-color: var(--textColor);
         margin: 5px;
         display: block;
         right: 90%;
@@ -295,9 +295,10 @@
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}">
+<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; 
+    --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}; --textColor: {tree.accentColor};">
     <!-- Side bar menu -->
-    <sidebar id="Sidebar" style="--buttonColor: {tree.accentColor}; --sidebarColor1: {tree.backgroundColors[0]}; --sidebarColor2: {tree.backgroundColors[1]};">
+    <sidebar id="Sidebar" style="--buttonColor: {tree.menuColor}; --sidebarColor1: {tree.backgroundColors[0]}; --sidebarColor2: {tree.backgroundColors[1]};">
         <button 
         class="sidebar-button"
         on:click={() => BackToMenu()}>Menu</button>

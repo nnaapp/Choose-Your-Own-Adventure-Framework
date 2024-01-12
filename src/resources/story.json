@@ -7,10 +7,11 @@
         "monospace"
     ],
     "BackgroundColors": [
-        "#252e3d",
-        "#0d1117"
+        "#141E30",
+        "#243B55"
     ],
-    "AccentColor": "#0d1117",
+    "MenuColor": "#141E30",
+    "AccentColor": "#FFFFFF",
     "Types": [
         "Cost",
         "Time",

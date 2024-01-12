@@ -51,7 +51,8 @@ lowerTitle = input("What is the title subtext? ")
 backgroundGradient = []
 backgroundGradient.append(input("What is the start color of the background gradient? "))
 backgroundGradient.append(input("What is the end color of the background gradient? "))
-accentColor = input("What is the accent (menu buttons, etc) color? ")
+menuColor = input("What is the menu (menu buttons, etc) color? ")
+accentColor = input("What is the accent (text on buttons, etc) color? ")
 
 fontFamily = []
 fontFamily.append(input("What font do you want to use? "))
@@ -60,7 +61,7 @@ fontFamily.append(input("What 2nd backup font do you want to use? "))
     
 # Re-format this into a dict, because python JSON lib likes dicts,
 # with only two key/value pairs: number of branches per node, and the tree of nodes
-data = {'Title': title, 'TitleSubtext': lowerTitle, 'Fonts': fontFamily, 'BackgroundColors': backgroundGradient, 'AccentColor': accentColor, 'Types': types, 'Colors': colors, 'BorderColors': bordercolors, 'BranchCount': int(branchCount), 'Tree': treeArr}
+data = {'Title': title, 'TitleSubtext': lowerTitle, 'Fonts': fontFamily, 'BackgroundColors': backgroundGradient, 'MenuColor': menuColor, 'AccentColor': accentColor, 'Types': types, 'Colors': colors, 'BorderColors': bordercolors, 'BranchCount': int(branchCount), 'Tree': treeArr}
 
 # Dump the data dict to JSON using JSON lib
 with open(sys.argv[3], 'w', encoding = 'utf-8') as jsonfile:

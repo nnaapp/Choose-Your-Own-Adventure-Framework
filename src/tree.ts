@@ -113,6 +113,8 @@ export class StoryTree
     // Colors for background image
     public backgroundColors: string[];
     // Color for background color dependent elements (menu buttons)
+    public menuColor: string;
+    // Color for accents (text, etc) on menu elements
     public accentColor: string;
     // Menu screen title
     public title: string;
@@ -137,6 +139,7 @@ export class StoryTree
         this.jsonIDHash = {};
         this.types = [];
         this.backgroundColors = [];
+        this.menuColor = "";
         this.accentColor = "";
         this.title = "";
         this.titleSubtext = "";
@@ -180,6 +183,7 @@ export class StoryTree
         {
             NewStoryTree.backgroundColors = ["#000000", "#000000"];
         }
+        NewStoryTree.menuColor = data.MenuColor;
         NewStoryTree.accentColor = data.AccentColor;
 
         // If there is a mismatch between the number of choice types, and the number of colors, return null
@@ -235,6 +239,7 @@ export type StoryTreeJSON =
     TitleSubtext: string;
     Fonts: string[];
     BackgroundColors: string[];
+    MenuColor: string;
     AccentColor: string;
     Types: string[];
     Colors: string[];
