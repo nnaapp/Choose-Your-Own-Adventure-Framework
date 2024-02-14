@@ -14,62 +14,37 @@
     }
 </script>
 
-<style>
+<style lang="postcss">
     body {
         color: var(--textColor);
     }
-    
-    .button {
-        width: 100%;
-        height: 50px;
-        position:absolute;
-        top: 70%;
-        left: 50%;
-        transform:translate(-50%, -70%);
-        background-color: var(--buttonColor);
+
+    .start-btn {
         color: inherit;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 2.5vmin;
         transition: filter 0.5s;
         font-family: inherit;
-        border: none;
     }
 
-    .button:hover {
-        filter: brightness(1.5);
-    }
-
-    menu-title {
-        width: 80%;
-        height: 20%;
-        top: 10%;
-        left: 50%;
-        position: absolute;
-        transform:translate(-50%, -10%);
-        text-align: center;
-    }
-
-    .title-header {
-        font-size: 8vmin;
-    }
-
-    .title-subtext {
-        font-size: 5vmin;
+    .start-btn:hover {
+        filter: brightness(1.1);
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; 
-    --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}; --textColor: {tree.accentColor};">
-    <menu-title>
-        <p class="title-header">{tree.title}</p>
-        <p class="title-subtext">{tree.titleSubtext}</p>
-    </menu-title>
+<body style="--primaryFont: {tree.fonts[0]}; 
+    --secondaryFont: {tree.fonts[1]}; 
+    --tertiaryFont: {tree.fonts[2]}; 
+    --bkgColor1: {tree.backgroundColors[0]}; 
+    --bkgColor2: {tree.backgroundColors[1]}; 
+    --textColor: {tree.accentColor};"
+>
+    <div id="title" class="h-1/5 w-4/5 text-center absolute top-1/4 -translate-y-1/4 left-2/4 -translate-x-2/4">
+        <p class="text-6xl">{tree.title}</p>
+        <p class="text-4xl">{tree.titleSubtext}</p>
+    </div>
     
     <button
-        class="button"
-        style="--buttonColor: {tree.menuColor};;"
+        class="start-btn w-full h-14 text-center text-xl inline-block absolute top-3/4 -translate-y-3/4 left-1/2 -translate-x-1/2"
+        style="background-color: {tree.menuColor};"
         on:click={() => startGame()}
     >Start Game</button>
 </body>

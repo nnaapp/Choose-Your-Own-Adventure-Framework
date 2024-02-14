@@ -116,15 +116,15 @@
     {
         if (!sidebarOn)
         {
-            document.getElementById("Sidebar").style.right = "0px";
+            document.getElementById("Sidebar").style.right = "0rem";
             document.getElementById("Burger-Mid").style.opacity = "0";
-            document.getElementById("Burger-Top").style.transform = "rotate(45deg) translate(6px, 6px)"
-            document.getElementById("Burger-Low").style.transform = "rotate(135deg) translate(-5px, 5px)"
+            document.getElementById("Burger-Top").style.transform = "rotate(45deg) translate(0px, 14px)"
+            document.getElementById("Burger-Low").style.transform = "rotate(-45deg) translate(0px, -14px)"
             sidebarOn = true;
         }
         else
         {
-            document.getElementById("Sidebar").style.right = "-250px";
+            document.getElementById("Sidebar").style.right = "-16rem";
             document.getElementById("Burger-Mid").style.opacity = "100";
             document.getElementById("Burger-Top").style.transform = "rotate(0deg)"
             document.getElementById("Burger-Low").style.transform = "rotate(0deg)"
@@ -139,219 +139,103 @@
     }
 </script>
 
-<style>
-    prompt-container {
-        background-color: #d9dadb;
-        position: absolute;
-        height: 80%;
-        width: 50%;
-        top: 50%;
-        left: 85%;
-        transform:translate(-85%, -50%);
-        font-size: 4vmin;
-        border-radius: 8px;
-        border: 16px solid #d9dadb;
-        display: flex;
-    }
-
-    flex-container {
-        height: 100vh;
-        width: 33vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
-    sub-flex-container {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .button {
-        width: 100%;
-        height: 33%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 3vmin;
-        font-family: inherit;
-        transition: transform 0.4s;
-        border-radius: 8px;
-        white-space: normal;
-        margin-left: 5%;
-        margin-top: 1%;
-        margin-bottom: 1%;
-    }
-
-    .button:hover {
-        transform: scale(1.05);
-    }
-
-    .button:active {
-        transition: transform 0.2s;
-        transform: scale(1);
-    }
-
-    static-box {
-        width: 100%;
-        height: 33%;
-        text-decoration: none;
-        font-size: 2vmin;
-        border-radius: 8px;
-        background-color: #d7d9db;
-        margin-left: 5%;
-        margin-top: 1%;
-        margin-bottom: 1%;
-    }
-
-    game-stats-box {
-        width: 100%; 
-        height: 33vh;
-        text-decoration: none;
-        font-size: 2vmin;
-        border-radius: 8px;
-        flex-direction: column;
-        border-radius: 0px;
-    }
-
-    /* style for paragraph in postgame stats */
-    .game-stats-header {
-        text-align: center;
-        font-size: 2vmin;
-    }
-
-    .game-stats {
-        text-align: center;
-        font-size: 4vmin;
-        padding-top: 20%;
-        transition: transform 0.5s;
-    }
-
-    .game-stats:hover {
-        transform: scale(1.2);
-    }
-
-    sidebar {
-        height: 100%;
-        width: 250px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: -250px;
+<style lang="postcss">
+    .sidebar {
         background-image: linear-gradient(var(--sidebarColor1), var(--sidebarColor2));
         filter: brightness(1.2); 
-        overflow: hidden;
-        padding-top: 60px;
         transition: right 0.5s;
     }
     
-    .sidebar-button {
-        font-size: 1.5vmin;
+    .btn-sidebar {
         font: inherit;
-        position: relative;
-        left: 50%;
-        transform:translate(-50%, 0%);
-        height: 40px;
-        width: 100%;
         color: var(--textColor);
         background-color: var(--buttonColor);
-        font-size: 12px;
         transition: filter 0.5s;
-        border: none;
-        margin-top: 5px;
     }
 
-    .sidebar-button:hover {
-        filter: brightness(1.5);
+    .btn-sidebar:hover {
+        filter: brightness(1.1);
     }
 
-    .burger {
-        all: unset;
-        width: 50px;
-        height: 30px;
-        position: absolute;
-        left: 100%;
-        top: 1%;
-        transform:translate(-100%, -1%);
-        background: rgba(0,0,0,0);
-        z-index: 1;
-        transition: transform 0.5s;
-    }
-
-    .burger:focus {
-        outline: revert;
-    }
-
-    burger-line {
-        width: 25px;
-        height: 3px;
+    .burger-line {
         background-color: var(--textColor);
-        margin: 5px;
-        display: block;
-        right: 90%;
-        transition: transform 0.5s;
     }
 </style>
 
-<body style="--primary: {tree.fonts[0]}; --secondary: {tree.fonts[1]}; --tertiary: {tree.fonts[2]}; 
-    --bkgColor1: {tree.backgroundColors[0]}; --bkgColor2: {tree.backgroundColors[1]}; --textColor: {tree.accentColor};">
+<body style="--primaryFont: {tree.fonts[0]}; 
+    --secondaryFont: {tree.fonts[1]}; 
+    --tertiaryFont: {tree.fonts[2]}; 
+    --bkgColor1: {tree.backgroundColors[0]}; 
+    --bkgColor2: {tree.backgroundColors[1]}; 
+    --textColor: {tree.accentColor};"
+>
     <!-- Side bar menu -->
-    <sidebar id="Sidebar" style="--buttonColor: {tree.menuColor}; --sidebarColor1: {tree.backgroundColors[0]}; --sidebarColor2: {tree.backgroundColors[1]};">
+    <div id="Sidebar" class="sidebar h-full w-64 -right-64 pt-14 z-10 fixed overflow-hidden"
+        style="--buttonColor: {tree.menuColor}; 
+        --sidebarColor1: {tree.backgroundColors[0]}; 
+        --sidebarColor2: {tree.backgroundColors[1]};"
+    >
         <button 
-        class="sidebar-button"
-        on:click={() => BackToMenu()}>Menu</button>
+        class="btn-sidebar w-full h-10 text-xl  mt-1.5 border-none relative"
+        on:click={() => BackToMenu()}
+        >Menu</button>
+
         <button 
-        class="sidebar-button"
-        on:click={() => RestartGame()}>Restart</button>
-    </sidebar>
+        class="btn-sidebar w-full h-10 text-xl  mt-1.5 border-none relative"
+        on:click={() => RestartGame()}
+        >Restart</button>
+    </div>
 
     <!-- Burger icon (3 lines) for opening side bar -->
     <button 
     id="Burger"
-    class="burger"
+    class="h-8 w-14 z-20 relative float-right duration-500 flex flex-col items-center justify-center"
     on:click={() => ToggleSidebar()}>
-        <burger-line id="Burger-Top"></burger-line>
-        <burger-line id="Burger-Mid" style="transition: opacity 0.25s"></burger-line>
-        <burger-line id="Burger-Low"></burger-line>
+        <div id="Burger-Top" class="burger-line w-8 h-1 mt-1.5 block duration-500"></div>
+        <div id="Burger-Mid" class="burger-line w-8 h-1 mt-1.5 block duration-150"></div>
+        <div id="Burger-Low" class="burger-line w-8 h-1 mt-1.5 block duration-500"></div>
     </button>
     
     <!-- Prompt box on right half of screen -->
-    <prompt-container>
-        <p style="margin: auto;">{prompt}</p>
-    </prompt-container>
+    <div class="h-screen w-1/2 float-right flex items-center justify-start">
+        <div class="h-5/6 w-5/6 text-3xl bg-slate-100 border-slate-100 border-8 rounded-lg flex items-center justify-center">
+            <p class="m-auto">{prompt}</p>
+        </div>
+    </div>
 
     <!-- Vertical flexbox to support any number of buttons stacked on top of each other -->
-    <flex-container>
+    <div class="h-screen w-1/3 flex flex-col items-center justify-center">
         <!-- If this is not a leaf node, use an #each block to render one button per branch in the branch array -->
         {#if numBranches > 0}
             {#each currentNode.branches as branch, i}
                 <button
-                    class="button"
-                    style="background-color: {tree.typeToColor[buttonTypes[i]]}; border: 3px solid {tree.typeToBorderColor[buttonTypes[i]]};"
+                    class="w-5/6 h-1/3 text-center inline-block text-xl duration-300 rounded-lg m-5 
+                    hover:scale-105 active:duration-200 active:scale-100"
+                    style="font-family: inherit; background-color: {tree.typeToColor[buttonTypes[i]]}; 
+                    border: 3px solid {tree.typeToBorderColor[buttonTypes[i]]};"
                     on:click={() => UpdateGame(i)}
                 >{choices[i]}</button>
             {/each}
         <!-- If this is a leaf node, render a restart game button, as well as post-game stats -->
         {:else}
             <button
-                class="button Interaction"
+                class="w-5/6 h-1/3 bg-white text-center inline-block text-2xl duration-300 rounded-lg m-5 
+                hover:scale-105 active:duration-200 active:scale-100"
                 on:click={() => RestartGame()}
             >Restart the game!</button>
             <!-- Render post-game stats in a secondary horizontal flexbox, colored to reflect the colors of each type -->
-            <static-box>
-                <sub-flex-container>
+            <div class="w-5/6 h-1/3 text-xl rounded-lg bg-slate-300">
+                <div class="h-full w-full flex justify-around">
                     {#each tree.types as type, i}
-                        <game-stats-box
+                        <div class="w-full h-full text-xl flex flex-col justify-around"
                         style="background-color: {tree.typeToColor[type]}; border: 3px solid {tree.typeToBorderColor[type]};">
-                            <p class="game-stats-header">{tree.types[i]}</p>
-                            <p class="game-stats">{choicesTaken[type]}</p>
-                            <p class="game-stats">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
-                        </game-stats-box>
+                            <p class="text-center text-xl">{tree.types[i]}</p>
+                            <p class="text-center text-2xl duration-500 hover:scale-125">{choicesTaken[type]}</p>
+                            <p class="text-center text-2xl duration-500 hover:scale-125">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
+                        </div>
                     {/each}
-                </sub-flex-container>
-            </static-box> 
+                </div>
+            </div> 
         {/if}
-    </flex-container>
+    </div>
 </body>

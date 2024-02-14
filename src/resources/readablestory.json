@@ -1,25 +1,26 @@
 {
-    "Title": "Color Preference",
-    "TitleSubtext": "Questionnaire",
+    "Title": "Color Questionnaire",
+    "TitleSubtext": "Example",
     "Fonts": [
-        "Lucidia",
-        "monospace",
+        "Lucidia Console",
+        "Lucidia Console",
         "monospace"
     ],
+    "BackgroundColors": [
+        "#374850",
+        "#374850"
+    ],
+    "MenuColor": "#3177B3",
+    "AccentColor": "#FCFBFC",
     "Types": [
-        "Blue",
-        "Green",
-        "Orange"
+        "Cost",
+        "Time",
+        "Consequences"
     ],
     "Colors": [
         "#96beff",
         "#daffc9",
         "#ffd299"
-    ],
-    "HoverColors": [
-        "#4A86E8",
-        "#93C47D",
-        "#93C47D"
     ],
     "BorderColors": [
         "#4A86E8",
@@ -35,14 +36,14 @@
                 2
             ],
             "Types": [
-                "Blue",
-                "Orange"
+                "Cost",
+                "Consequences"
             ],
             "Texts": [
                 "Blue",
                 "Orange"
             ],
-            "Prompt": "Which do you like more, blue or orange? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nisLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus sapien consectetur nis"
+            "Prompt": "Which do you like more, blue or orange?"
         },
         {
             "ID": 3,
@@ -64,8 +65,8 @@
                 3
             ],
             "Types": [
-                "Orange",
-                "Green"
+                "Consequences",
+                "Time"
             ],
             "Texts": [
                 "Darker orange",
@@ -80,8 +81,8 @@
                 3
             ],
             "Types": [
-                "Blue",
-                "Blue"
+                "Cost",
+                "Cost"
             ],
             "Texts": [
                 "Lighter blue",

@@ -1,6 +1,7 @@
 <script lang="ts">
     import { gameTree } from '../tree_store.ts';
     import { onNavigate } from '$app/navigation';
+		import "../app.css";
 
     let tree: StoryTree;
     gameTree.subscribe((value) => {
@@ -21,7 +22,7 @@
     });
 </script>
 
-<style>
+<style lang="postcss">
 :global(body) {
     height: 100%;
     padding: 0;
@@ -30,7 +31,7 @@
     background-image: linear-gradient(var(--bkgColor1), var(--bkgColor2)); 
     background-repeat: no-repeat;
     background-attachment: fixed;
-		font-family: var(--primary), var(--secondary), var(--tertiary);
+		font-family: var(--primaryFont), var(--secondaryFont), var(--tertiaryFont);
 		overflow-wrap: break-word;
 		word-wrap: break-word;
 		color: black;
