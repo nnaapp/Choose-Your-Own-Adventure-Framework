@@ -11,8 +11,9 @@ story_csv_to_json.py in the tools directory can convert a CSV (formatted a speci
 
 ## Usage
 ```bash
-python3 story_csv_to_json.py <csv_dir> <num_nodes> <branches_per_node> <json_dir>
+python3 story_csv_to_json.py <tree_csv_dir> <types_csv_dir> <output_json_dir>
 ```
+See the tools/examples directory for examples.
 
 # Using Svelte
 
