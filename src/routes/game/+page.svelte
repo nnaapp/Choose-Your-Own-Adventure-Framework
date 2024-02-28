@@ -1,6 +1,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { gameTree } from '../../tree_store.ts';
+    import { gameTree, currentTreeIndex } from '../../tree_store.ts';
 
     // Interfact dictionary that associates a string with a number,
     // this is used for keeping track of how many times the user has picked each choice type
@@ -9,15 +9,21 @@
         [key: string]: number;
     }
 
+    let selectedTree: number;
+    currentTreeIndex.subscribe((value) => {
+        console.log("Selected tree index: " + value.toString());
+        selectedTree = value;
+    });
+
     // Get a reference to the story tree Svelte store, which prevents regenerating it on every refresh
-    let tree: StoryTree;
+    let trees: StoryTree;
     gameTree.subscribe((value) => {
         console.log("Story tree read from store.")
-        tree = value;
+        trees = value;
     });
 
     // Get reference to root node of story tree
-    let currentNode = tree.GetRootNode();
+    let currentNode = trees.GetRootNode(selectedTree);
 
     // Prompt for choices
     let prompt: string
@@ -41,9 +47,9 @@
     // Resets the choice counts to 0 for the entire dictionary
     function ResetChoiceCount()
     {
-        for (let i = 0; i < tree.types.length; i++)
+        for (let i = 0; i < trees.types.length; i++)
         {
-            choicesTaken[tree.types[i]] = 0;
+            choicesTaken[trees.types[i]] = 0;
         }
         choicesTaken["TotalChoices"] = 0;
     }
@@ -100,7 +106,7 @@
     {
         console.log(choicesTaken);
         ResetChoiceCount();
-        currentNode = tree.GetRootNode();
+        currentNode = trees.GetRootNode(selectedTree);
         numBranches = currentNode.GetNumBranches();
         UpdateCurrentPrompt();
         UpdateChoices();
@@ -162,18 +168,18 @@
     }
 </style>
 
-<body style="--primaryFont: {tree.fonts[0]}; 
-    --secondaryFont: {tree.fonts[1]}; 
-    --tertiaryFont: {tree.fonts[2]}; 
-    --bkgColor1: {tree.backgroundColors[0]}; 
-    --bkgColor2: {tree.backgroundColors[1]}; 
-    --textColor: {tree.accentColor};"
+<body style="--primaryFont: {trees.fonts[0]}; 
+    --secondaryFont: {trees.fonts[1]}; 
+    --tertiaryFont: {trees.fonts[2]}; 
+    --bkgColor1: {trees.backgroundColors[0]}; 
+    --bkgColor2: {trees.backgroundColors[1]}; 
+    --textColor: {trees.accentColor};"
 >
     <!-- Side bar menu -->
     <div id="Sidebar" class="sidebar h-full w-64 -right-64 pt-14 z-10 fixed overflow-hidden"
-        style="--buttonColor: {tree.menuColor}; 
-        --sidebarColor1: {tree.backgroundColors[0]}; 
-        --sidebarColor2: {tree.backgroundColors[1]};"
+        style="--buttonColor: {trees.menuColor}; 
+        --sidebarColor1: {trees.backgroundColors[0]}; 
+        --sidebarColor2: {trees.backgroundColors[1]};"
     >
         <button 
         class="btn-sidebar w-full h-10 text-xl  mt-1.5 border-none relative"
@@ -211,8 +217,8 @@
                 <button
                     class="w-5/6 h-1/3 text-center inline-block text-xl duration-300 rounded-lg m-5 
                     hover:scale-105 active:duration-200 active:scale-100"
-                    style="font-family: inherit; background-color: {tree.typeToColor[buttonTypes[i]]}; 
-                    border: 3px solid {tree.typeToBorderColor[buttonTypes[i]]};"
+                    style="font-family: inherit; background-color: {trees.typeToColor[buttonTypes[i]]}; 
+                    border: 3px solid {trees.typeToBorderColor[buttonTypes[i]]};"
                     on:click={() => UpdateGame(i)}
                 >{choices[i]}</button>
             {/each}
@@ -226,10 +232,10 @@
             <!-- Render post-game stats in a secondary horizontal flexbox, colored to reflect the colors of each type -->
             <div class="w-5/6 h-1/3 text-xl rounded-lg bg-slate-300">
                 <div class="h-full w-full flex justify-around">
-                    {#each tree.types as type, i}
+                    {#each trees.types as type, i}
                         <div class="w-full h-full text-xl flex flex-col justify-around"
-                        style="background-color: {tree.typeToColor[type]}; border: 3px solid {tree.typeToBorderColor[type]};">
-                            <p class="text-center text-xl">{tree.types[i]}</p>
+                        style="background-color: {trees.typeToColor[type]}; border: 3px solid {trees.typeToBorderColor[type]};">
+                            <p class="text-center text-xl">{trees.types[i]}</p>
                             <p class="text-center text-2xl duration-500 hover:scale-125">{choicesTaken[type]}</p>
                             <p class="text-center text-2xl duration-500 hover:scale-125">{choicesTaken[type] / choicesTaken['TotalChoices'] * 100}%</p>
                         </div>

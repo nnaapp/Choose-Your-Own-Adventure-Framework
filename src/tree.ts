@@ -105,9 +105,9 @@ export class StoryNode
 export class StoryTree
 {
     // Array of all nodes
-    private nodes: StoryNode[];
+    private nodes: StoryNode[][];
     // Hashmap of IDs (from JSON file) to indices in nodes array
-    private jsonIDHash: IDtoIndex;
+    private jsonIDHash: IDtoIndex[];
     // Array of choice type names
     public types: string[];
     // Colors for background image
@@ -136,7 +136,7 @@ export class StoryTree
     constructor()
     {
         this.nodes = [];
-        this.jsonIDHash = {};
+        this.jsonIDHash = [];
         this.types = [];
         this.backgroundColors = [];
         this.menuColor = "";
@@ -153,16 +153,16 @@ export class StoryTree
     /**
     * @returns {StoryNode|null} The StoryNode with ID 0 (root), or null if one does not exist.
     */
-    GetRootNode(): StoryNode|null
+    GetRootNode(treeIndex: number): StoryNode|null
     {
-        if (this.nodes[this.jsonIDHash[0]] == undefined) return null;
+        if (this.nodes[treeIndex][this.jsonIDHash[treeIndex][0]] == undefined) return null;
 
-        return this.nodes[this.jsonIDHash[0]];
+        return this.nodes[treeIndex][this.jsonIDHash[treeIndex][0]];
     }
 
-    GetNodes(): StoryNode[]
+    GetNodes(treeIndex: number): StoryNode[]
     {
-        return this.nodes;
+        return this.nodes[treeIndex];
     }
 
     /**
@@ -199,31 +199,37 @@ export class StoryTree
 
         // Push every node from the JSON onto the nodes array,
         // and hash their IDs to indices in jsonIDHash
-        for (let i = 0; i < data.Tree.length; i++)
-        {
-            NewStoryTree.nodes.push(new StoryNode(i, data.Tree[i].Prompt, data.Tree[i].Branches.length));
-            NewStoryTree.jsonIDHash[data.Tree[i].ID] = i;
-        }
+        data.Trees.forEach((tree, treeIndex) => {
+            NewStoryTree.nodes.push(new Array<StoryNode>());
+            NewStoryTree.jsonIDHash.push({} as IDtoIndex);
+            tree.Tree.forEach((node, nodeIndex) => {
+                NewStoryTree.nodes[treeIndex].push(new StoryNode(nodeIndex, node.Prompt, node.Branches.length));
+                NewStoryTree.jsonIDHash[treeIndex][node.ID] = nodeIndex;
+            });
+        });
 
         // Do a second pass, connecting nodes to each other
         // by adding Branches to their Branch arrays
-        for (let i = 0; i < data.Tree.length; i++)
-        {
-            // Get the IDs the current node should connect to
-            let curBranches = data.Tree[i].Branches;
-            // Get the types of the current set of branches (cost, consequences, etc)
-            let curTypes = data.Tree[i].Types;
-            let curTexts = data.Tree[i].Texts;
-            for (let j = 0; j < curBranches.length; j++)
-            {
-                // Convert the current branch ID into an index in this.nodes
-                curBranches[j] = NewStoryTree.jsonIDHash[curBranches[j]];
-                // Format a new Branch to be added to the current node's Branch array
-                let newBranch: Branch = 
-                    { node: NewStoryTree.nodes[curBranches[j]], nodeType: curTypes[j], text: curTexts[j] };
-                NewStoryTree.nodes[i].SetNext(j, newBranch);
-            }
-        }
+        data.Trees.forEach((tree, treeIndex) => {
+            tree.Tree.forEach((node, nodeIndex) => {
+                // Get the IDs the current node should connect to
+                let curBranches = node.Branches;
+                // Get the types of the current set of branches (cost, consequences, etc)
+                let curTypes = node.Types;
+                let curTexts = node.Texts;
+
+                curBranches.forEach((branch, branchIndex) => {
+                    // Convert the current branch ID into an index in this.nodes
+                    branch = NewStoryTree.jsonIDHash[treeIndex][branch];
+
+                    // Format a new Branch to be added to the current node's Branch array
+                    let newBranch: Branch = { node: NewStoryTree.nodes[treeIndex][branch], 
+                        nodeType: curTypes[branchIndex], text: curTexts[branchIndex] };
+
+                    NewStoryTree.nodes[treeIndex][nodeIndex].SetNext(branchIndex, newBranch);
+                });
+            });
+        });
 
         return NewStoryTree;
     }
@@ -246,13 +252,16 @@ export type StoryTreeJSON =
     HoverColors: string[];
     BorderColors: string[];
     BranchCount: number;
-    Tree: 
+    Trees: 
     {
-        ID: number;
-        Branches: number[];
-        Types: string[];
-        Texts: string[];
-        Prompt: string;
+        Tree:
+        {
+            ID: number;
+            Branches: number[];
+            Types: string[];
+            Texts: string[];
+            Prompt: string;
+        }[]
     }[];
 }
 

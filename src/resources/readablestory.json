@@ -28,67 +28,136 @@
         "#d98c2b"
     ],
     "BranchCount": 2,
-    "Tree": [
+    "Trees": [
         {
-            "ID": 0,
-            "Branches": [
-                1,
-                2
-            ],
-            "Types": [
-                "Cost",
-                "Consequences"
-            ],
-            "Texts": [
-                "Blue",
-                "Orange"
-            ],
-            "Prompt": "Which do you like more, blue or orange?"
+            "Tree": [
+                {
+                    "ID": 0,
+                    "Branches": [
+                        1,
+                        2
+                    ],
+                    "Types": [
+                        "Cost",
+                        "Consequences"
+                    ],
+                    "Texts": [
+                        "Blue",
+                        "Orange"
+                    ],
+                    "Prompt": "Which do you like more, blue or orange?"
+                },
+                {
+                    "ID": 3,
+                    "Branches": [
+                
+                    ],
+                    "Types": [
+                
+                    ],
+                    "Texts": [
+                
+                    ],
+                    "Prompt": "Thank you for telling me!"
+                },
+                {
+                    "ID": 2,
+                    "Branches": [
+                        3,
+                        3
+                    ],
+                    "Types": [
+                        "Consequences",
+                        "Time"
+                    ],
+                    "Texts": [
+                        "Darker orange",
+                        "Actually I prefer green"
+                    ],
+                    "Prompt": "Do you prefer lighter orange, or darker orange?"
+                },
+                {
+                    "ID": 1,
+                    "Branches": [
+                        3,
+                        3
+                    ],
+                    "Types": [
+                        "Cost",
+                        "Cost"
+                    ],
+                    "Texts": [
+                        "Lighter blue",
+                        "Darker blue"
+                    ],
+                    "Prompt": "Do you prefer lighter blue, or darker blue?"
+                }
+            ]
         },
         {
-            "ID": 3,
-            "Branches": [
+            "Tree": [
+                {
+                    "ID": 0,
+                    "Branches": [
+                        2,
+                        1
+                    ],
+                    "Types": [
+                        "Consequences",
+                        "Cost"
+                    ],
+                    "Texts": [
+                        "Orange",
+                        "Blue"
+                    ],
+                    "Prompt": "Which do you like more, orange or blue?"
+                },
+                {
+                    "ID": 3,
+                    "Branches": [
                 
-            ],
-            "Types": [
+                    ],
+                    "Types": [
                 
-            ],
-            "Texts": [
+                    ],
+                    "Texts": [
                 
-            ],
-            "Prompt": "Thank you for telling me!"
-        },
-        {
-            "ID": 2,
-            "Branches": [
-                3,
-                3
-            ],
-            "Types": [
-                "Consequences",
-                "Time"
-            ],
-            "Texts": [
-                "Darker orange",
-                "Actually I prefer green"
-            ],
-            "Prompt": "Do you prefer lighter orange, or darker orange?"
-        },
-        {
-            "ID": 1,
-            "Branches": [
-                3,
-                3
-            ],
-            "Types": [
-                "Cost",
-                "Cost"
-            ],
-            "Texts": [
-                "Lighter blue",
-                "Darker blue"
-            ],
-            "Prompt": "Do you prefer lighter blue, or darker blue?"
+                    ],
+                    "Prompt": "Thank you for telling me!"
+                },
+                {
+                    "ID": 2,
+                    "Branches": [
+                        3,
+                        3
+                    ],
+                    "Types": [
+                        "Consequences",
+                        "Time"
+                    ],
+                    "Texts": [
+                        "Darker orange",
+                        "Actually I prefer green"
+                    ],
+                    "Prompt": "Do you prefer lighter orange, or darker orange?"
+                },
+                {
+                    "ID": 1,
+                    "Branches": [
+                        3,
+                        3
+                    ],
+                    "Types": [
+                        "Cost",
+                        "Cost"
+                    ],
+                    "Texts": [
+                        "Lighter blue",
+                        "Darker blue"
+                    ],
+                    "Prompt": "Do you prefer lighter blue, or darker blue?"
+                }
+            ]
         }
     ]
 }

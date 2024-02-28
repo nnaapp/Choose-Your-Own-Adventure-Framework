@@ -1,6 +1,9 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { gameTree } from '../tree_store.ts';
+    import { gameTree, currentTreeIndex } from '../tree_store.ts';
+    import { writable } from 'svelte/store';
+
+    let selectedTree = 0;
 
     let tree: StoryTree;
     gameTree.subscribe((value) => {
@@ -10,6 +13,7 @@
 
     function startGame()
     {
+        currentTreeIndex.set(1);
         goto('/game', { replaceState: false })
     }
 </script>

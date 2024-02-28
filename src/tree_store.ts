@@ -3,6 +3,10 @@ import { StoryTree } from './tree.js';
 import type { StoryTreeJSON } from './tree.ts';
 import * as data from './resources/readablestory.json';
 
-let tree = StoryTree.PopulateFromJSON(data as StoryTreeJSON);
+// console.log(data);
+// let trees = new StoryTree();
+let trees = StoryTree.PopulateFromJSON(data as StoryTreeJSON);
+let selectedTree = 0;
 
-export const gameTree = writable(tree);
+export const gameTree = writable(trees);
+export const currentTreeIndex = writable(selectedTree);
