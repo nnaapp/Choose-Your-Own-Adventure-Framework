@@ -189,7 +189,7 @@
         <button 
         class="btn-sidebar w-full h-10 text-xl  mt-1.5 border-none relative"
         on:click={() => RestartGame()}
-        >Restart</button>
+        >Restart current story</button>
     </div>
 
     <!-- Burger icon (3 lines) for opening side bar -->
@@ -228,7 +228,7 @@
                 class="w-5/6 h-1/3 bg-white text-center inline-block text-2xl duration-300 rounded-lg m-5 
                 hover:scale-105 active:duration-200 active:scale-100"
                 on:click={() => RestartGame()}
-            >Restart the game!</button>
+            >Restart this scenario</button>
             <!-- Render post-game stats in a secondary horizontal flexbox, colored to reflect the colors of each type -->
             <div class="w-5/6 h-1/3 text-xl rounded-lg bg-slate-300">
                 <div class="h-full w-full flex justify-around">

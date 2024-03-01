@@ -56,8 +56,8 @@
                     alt="Placeholder image"/>
             </div>
             <div class="p-6">
-                <h5 class="text-center">Test</h5>
-                <p>teest teste ets etste satet se tset ste tste tset ste tste tste tste</p>
+                <h5 class="text-center">Story 1:</h5>
+                <p>Central line insertion</p>
             </div>
             <div class="p-6 pt-0">
                 <button

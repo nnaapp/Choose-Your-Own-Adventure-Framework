@@ -1,6 +1,6 @@
 {
-    "Title": "Color Questionnaire",
-    "TitleSubtext": "Example",
+    "Title": "FLIGHT Training Module",
+    "TitleSubtext": "",
     "Fonts": [
         "Lucidia Console",
         "Lucidia Console",
@@ -15,16 +15,19 @@
     "Types": [
         "Cost",
         "Time",
-        "Consequences"
+        "Consequences",
+        "End"
     ],
     "Colors": [
         "#96beff",
         "#daffc9",
+        "#ffd299",
         "#ffd299"
     ],
     "BorderColors": [
         "#4A86E8",
         "#93C47D",
+        "#d98c2b",
         "#d98c2b"
     ],
     "BranchCount": 2,
@@ -42,10 +45,10 @@
                         "Consequences"
                     ],
                     "Texts": [
-                        "Blue",
-                        "Orange"
+                        "Apply ultrasound gel to probe and apply sterile probe cover",
+                        "Stop the procedure and advise provider sterility has been broken and new sterile field is needed. "
                     ],
-                    "Prompt": "Which do you like more, blue or orange?"
+                    "Prompt": "67 year old female admitted to the ICU with cardiogenic shock needs a central line placed to receive dobutamine. The patient currently has no IV access and her blood pressure is 80/40. Nurse and provider dawn appropriate PPE and nurse assists in setting up the sterile field. Provider drapes ultrasound probe over sterile patient drape while assessing the patient’s internal jugular vein and awaiting nurse assistance to apply sterile probe cover to proceed with the procedure. What is the nurses next best action?"
                 },
                 {
                     "ID": 3,
@@ -58,39 +61,62 @@
                     "Texts": [
                 
                     ],
-                    "Prompt": "Thank you for telling me!"
+                    "Prompt": "Results"
                 },
                 {
                     "ID": 2,
                     "Branches": [
-                        3,
                         3
                     ],
                     "Types": [
-                        "Consequences",
-                        "Time"
+                        "End"
                     ],
                     "Texts": [
-                        "Darker orange",
-                        "Actually I prefer green"
+                        "Finish the exam"
                     ],
-                    "Prompt": "Do you prefer lighter orange, or darker orange?"
+                    "Prompt": "The nurse stops the procedure in spite of the patient’s urgent need for a central line to receive dobutamine. This nurse prevented blood stream infection and progression to septic shock."
                 },
                 {
                     "ID": 1,
                     "Branches": [
-                        3,
-                        3
+                        4,
+                        5
                     ],
                     "Types": [
                         "Cost",
-                        "Cost"
+                        "Time"
                     ],
                     "Texts": [
-                        "Lighter blue",
-                        "Darker blue"
+                        "Place on contact precautions",
+                        "This patient does not need infection control precautions as this time"
                     ],
-                    "Prompt": "Do you prefer lighter blue, or darker blue?"
+                    "Prompt": "Central line procedure continues due to rush for IV access to administer dobutamine. Patient develops septic shock with positive blood cultures of Methicillin Resistant S. aureus. This causes deterioration in the patient complicating her original cardiogenic shock. She is placed on levophed along with the dobutamine and vancomycin. Her kidney function declines rapidly requiring CRRT, lengthening her stay and worsening her prognosis. The nurse should do which of the following?"
+                },
+                {
+                    "ID": 4,
+                    "Branches": [
+                        3
+                    ],
+                    "Types":[
+                        "Consequences"
+                    ],
+                    "Texts": [
+                        "Finish the exam"
+                    ],
+                    "Prompt": "The nurse opts to place the patient on contact precautions and prevents spread of MRSA, protecting herself and other patients."
+                },
+                {
+                    "ID": 5,
+                    "Branches": [
+                        3
+                    ],
+                    "Types":[
+                        "End"
+                    ],
+                    "Texts": [
+                        "Finish the exam"
+                    ],
+                    "Prompt": "The nurse opts to not place the patient on contact precautions and increases the risk of spread to other patients."
                 }
             ]
         },
@@ -107,10 +133,10 @@
                         "Cost"
                     ],
                     "Texts": [
-                        "Orange",
-                        "Blue"
+                        "Ask the nurse manager to obtain another catheter kit and restart the procedure. Delaying the transport to the surgical suite.",
+                        "Complete the procedure to expedite the transport of the patient for the emergency surgery."
                     ],
-                    "Prompt": "Which do you like more, orange or blue?"
+                    "Prompt": "The nurse receives an order to insert a Foley Catheter for a 4-year old child who needs an emergency appendectomy. The parents are distraught, asking multiple questions about the surgery and the catheter procedure. While answering their questions, the nurse performs hand hygiene, puts on non-sterile gloves, positions the child, and opens the kit to set up the sterile field. As the nurse is preparing to insert the catheter, the nurse manager enters the room and states, “the surgeon is ready now and is very upset that the patient is not downstairs yet.” The father says to the nurse, “why are you so far behind!” The nurse, holding the catheter,  turns to the father and the nurse manager who are standing behind her and calmly states, “I’m inserting the catheter now and she will be ready for transport to the surgical suite.” What should the nurse do now?"
                 },
                 {
                     "ID": 3,
@@ -123,39 +149,62 @@
                     "Texts": [
                 
                     ],
-                    "Prompt": "Thank you for telling me!"
+                    "Prompt": "Results"
                 },
                 {
                     "ID": 2,
                     "Branches": [
-                        3,
                         3
                     ],
                     "Types": [
-                        "Consequences",
-                        "Time"
+                        "End"
                     ],
                     "Texts": [
-                        "Darker orange",
-                        "Actually I prefer green"
+                        "Finish the exam"
                     ],
-                    "Prompt": "Do you prefer lighter orange, or darker orange?"
+                    "Prompt": "The nurse opts to request a new Foley Catheter kit to start the procedure over and delay transport. This action maintains the sterility of the procedure and preventing urinary tract infections."
                 },
                 {
                     "ID": 1,
                     "Branches": [
-                        3,
-                        3
+                        4,
+                        5
                     ],
                     "Types": [
                         "Cost",
-                        "Cost"
+                        "Consequences"
                     ],
                     "Texts": [
-                        "Lighter blue",
-                        "Darker blue"
+                        "Place on contact precautions",
+                        "This patient does not need infection control precautions as this time"
                     ],
-                    "Prompt": "Do you prefer lighter blue, or darker blue?"
+                    "Prompt": "The nurse opts to complete the procedure because the surgeon and the father are upset. While recovering from the surgery the patient develops a urinary tract infection and is treated with IV antibiotics. On day four of admission the child develops copious diarrhea and is found to have Clostridium difficile. The child is transported to the Pediatric Intensive Care Unit (PICU) for hypovolemic shock. The nurse should do which of the following?"
+                },
+                {
+                    "ID": 4,
+                    "Branches": [
+                        3
+                    ],
+                    "Types": [
+                        "End"
+                    ],
+                    "Texts": [
+                        "Finish the exam"
+                    ],
+                    "Prompt": "Infection is successfully prevented"
+                },
+                {
+                    "ID": 5,
+                    "Branches": [
+                        3
+                    ],
+                    "Types": [
+                        "End"
+                    ],
+                    "Texts": [
+                        "Finish the exam"
+                    ],
+                    "Prompt": "Infection is spread"
                 }
             ]
         }
