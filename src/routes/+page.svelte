@@ -1,4 +1,6 @@
 <script lang="ts">
+    // Import the button card data
+    import buttonCard from '../resources/button_card.json';
     import { goto } from '$app/navigation';
     import { gameTree, currentTreeIndex } from '../tree_store.ts';
     import { writable } from 'svelte/store';
@@ -47,29 +49,23 @@
     </div>
 
     <div class="flex justify-evenly items-center mt-40">
-        <!-- button card testing -->
-        {#each trees.nodes as nodes, i}
-        <div class="flex flex-col overflow-hidden rounded-xl shadow-md w-64 bg-white text-black">
+        <!-- Render button cards using the imported data -->
+        {#each buttonCard as card, index}
+          <div class="flex flex-col overflow-hidden rounded-xl shadow-md w-64 bg-white text-black">
             <div class="h-40 mx-4 -mt-6 mt-2 shadow-lg overflow-hidden bg-clip-border rounded-xl bg-blue-gray-500">
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"
-                    alt="Placeholder image"/>
+              <img src={card.imageUrl} alt="Card image"/>
             </div>
             <div class="p-6">
-                <h5 class="text-center">Story 1:</h5>
-                <p>Central line insertion</p>
+              <h5 class="text-center">{card.title}</h5>
             </div>
             <div class="p-6 pt-0">
-                <button
-                    class="w-full align-middle rounded-lg bg-black text-white hover:scale-105 hover:shadow-lg hover:shadow-gray-900/20 duration-300"
-                    type="button"
-                    on:click={() => startGame(i)}>
-                    Start
-                </button>
+              <button class="w-full align-middle rounded-lg bg-black text-white hover:scale-105 hover:shadow-lg hover:shadow-gray-900/20 duration-300" type="button" on:click={() => startGame(index)}>
+                Start
+              </button>
             </div>
-        </div>
+          </div>
         {/each}
-    </div>
+      </div>
 
     <!--    
     <button
@@ -79,4 +75,3 @@
     >Start Game</button>
     -->
 </body>
-
